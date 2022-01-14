@@ -12,6 +12,7 @@ class Verhicle():
         self.row = row
         self.length = length
 
+# Git Class
 # Great 6x6 empty grid
 grid = [['_','_','_','_','_','_'],
         ['_','_','_','_','_','_'],
@@ -20,12 +21,15 @@ grid = [['_','_','_','_','_','_'],
         ['_','_','_','_','_','_'],
         ['_','_','_','_','_','_']]
 
+# Vehicle Class
 # Meant to store all vehicle names, is filled within load_vehicles function.
 vehicle_types = []
 
+# Move Class
 # Contains all possible moves.
 move_types = ['left', 'right', 'up', 'down']
 
+# Separate file
 def load_vehicles(file):
     """
     Read all the grid data from the csv file into a dataframe.
@@ -37,6 +41,7 @@ def load_vehicles(file):
         vehicles[grid_data['car'][index]] = Verhicle(grid_data['car'][index], grid_data['orientation'][index], grid_data['col'][index] - 1, grid_data['row'][index] - 1, grid_data['length'][index])
         vehicle_types.append(grid_data['car'][index])
 
+# Grid Class
 def span_grid():
     """
     Load the vehicles names, length and position into the grid (2x2 list).
@@ -48,6 +53,7 @@ def span_grid():
             else:
                 grid[vehicles[vehicle].row + l][vehicles[vehicle].col] = vehicles[vehicle].car
 
+# Grid Class
 def print_grid():
     """
     Print the current grid to the user.
@@ -61,6 +67,7 @@ def print_grid():
         print()
     print()
 
+# Grid Class
 def display_grid():
     """
     Span & print the grid.
@@ -68,7 +75,8 @@ def display_grid():
     span_grid()
     print_grid()
 
-def delete_pisition(vehicle_name):
+# Vehicle Class
+def delete_position(vehicle_name):
     """
     Delete the old position of a vehicle that is being moved within the grid.
     """
@@ -78,6 +86,7 @@ def delete_pisition(vehicle_name):
         else:
             grid[vehicles[vehicle_name].row + l][vehicles[vehicle_name].col] = '_'
 
+# Move Class
 def valid_move(vehicle_name, direction):
     """
     Check wheter move is possible.
@@ -96,27 +105,28 @@ def valid_move(vehicle_name, direction):
 
     return False
 
+# Move Class
 def move(vehicle_name, direction):
     """
     Try to move a vehicle.
     """
     if direction == 'left':
         if valid_move(vehicle_name, direction):
-            delete_pisition(vehicle_name)
+            delete_position(vehicle_name)
             vehicles[vehicle_name].col -= 1
             return True
         return False
 
     if direction == 'right':
         if valid_move(vehicle_name, direction):
-            delete_pisition(vehicle_name)
+            delete_position(vehicle_name)
             vehicles[vehicle_name].col += 1
             return True
         return False
 
     if direction == 'down':
         if valid_move(vehicle_name, direction):
-            delete_pisition(vehicle_name)
+            delete_position(vehicle_name)
             vehicles[vehicle_name].row += 1
             return True
         else:
@@ -124,7 +134,7 @@ def move(vehicle_name, direction):
 
     if direction == 'up':
         if valid_move(vehicle_name, direction):
-            delete_pisition(vehicle_name)
+            delete_position(vehicle_name)
             vehicles[vehicle_name].row -= 1
             return True
         else:
@@ -151,10 +161,10 @@ def random_algo():
     print(f'It took {count} random steps.')
 
 
-## Main ##
-load_vehicles('Rushhour6x6_1.csv')
-display_grid()
-random_algo()
+if __name__ == "__main__":
+    load_vehicles('Rushhour6x6_1.csv')
+    display_grid()
+    random_algo()
 
 
 # Correct solution to puzzle 1
