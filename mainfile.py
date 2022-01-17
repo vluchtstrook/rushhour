@@ -6,10 +6,16 @@ import loader
 class RushHour:
     
     def __init__(self, filename):
-        self.filled_grid = loader.load_vehicles(filename)
+        self.grid = loader.load_vehicles(filename)
+    
+    def display_grid_start(self):
+        return self.grid.span_grid()
     
     def display_grid(self):
-        return self.filled_grid.span_grid()
+        return self.grid.display_grid()
+
+    def move(self, vehicle, direction):
+        self.grid.move(vehicle, direction)
     
     # def random_algo(self):
     # # random algorithm to move around vehicles
@@ -77,4 +83,26 @@ if __name__ == "__main__":
     print("Welcome to Rushhour.\n")
 
     # Print starting positions of vehicles on grid
-    print(rushhour.display_grid())
+    print(rushhour.display_grid_start())
+
+    # Prompt the user for commands until they type QUIT
+    while True:
+
+        # prompt, converting all input to upper case
+        command = input("> ").upper()
+        print()
+        split_command = command.split(" ")
+        vehicle = split_command[0]
+        direction = split_command[1]
+    
+        # if rushhour.move(vehicle, direction):
+        #     print(rushhour.display_grid())
+        # else:
+        #     print('Invalid move! Try again')
+        #     print(rushhour.display_grid())
+
+        rushhour.move(vehicle, direction)
+        print(rushhour.display_grid())
+
+        if command == 'QUIT':
+            break

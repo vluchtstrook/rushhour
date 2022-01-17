@@ -8,7 +8,8 @@ def load_vehicles(filename):
     Load vehicle data from dataframe into Vehicle classes.
     """
 
-    vehicles = set()
+    # vehicles = []
+    vehicles = {}
 
     grid_data = pandas.read_csv(filename)
     grid_size = 0
@@ -18,8 +19,8 @@ def load_vehicles(filename):
         vehicle = Vehicle(grid_data['car'][index], grid_data['orientation'][index], grid_data['col'][index] - 1, grid_data['row'][index] - 1, grid_data['length'][index])
         
         # append vehicles (by name) to vehicles dict
-        # vehicles[grid_data['car'][index]] = vehicle
-        vehicles.add(vehicle)
+        vehicles[grid_data['car'][index]] = vehicle
+        # vehicles.append(vehicle)
 
     # determine grid size
     grid_size = max(grid_data['col'].max(), grid_data['row'].max())
