@@ -13,7 +13,7 @@ class Grid:
                 if vehicle.orientation == 'H':
                     self.grid[vehicle.row][vehicle.col + i] = vehicle.vehicle_name
                 else:
-                    self.grid[vehicle.col][vehicle.row + i] = vehicle.vehicle_name
+                    self.grid[vehicle.row + i][vehicle.col] = vehicle.vehicle_name
     
         # add finish indent and return string for representation
         if self.size % 2 == 0:
