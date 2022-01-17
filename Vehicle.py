@@ -1,4 +1,4 @@
-class Verhicle():
+class Vehicle():
 
     def __init__(self, car, orientation, col, row, length):
         self.vehicle_name = car
