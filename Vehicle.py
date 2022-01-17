@@ -10,9 +10,6 @@ class Verhicle():
     def __str__(self):
         return self.car_name
     
-    def car_name(self):
-        return self.car_name
-    
     def orientation(self):
         return self.orientation
     
