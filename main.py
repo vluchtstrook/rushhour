@@ -1,6 +1,7 @@
 from fileinput import filename
 from code.classes.rushhour import RushHour
 import code.algorithms.randomise as randomise
+import code.visualisation.visualisation as visualisation
 
 if __name__ == "__main__":
     
@@ -28,4 +29,8 @@ if __name__ == "__main__":
     rushhour.display_grid()
 
     # Run the random algorithm (still printing from within the functions!!)
-    randomise.random_algo(rushhour)
+    random_solution = randomise.random_algo(rushhour)
+
+    # Print the state history
+    visualisation.visualisation(random_solution[0], random_solution[1], random_solution[2])
+

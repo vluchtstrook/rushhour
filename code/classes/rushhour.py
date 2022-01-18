@@ -12,6 +12,8 @@ class RushHour:
         # possible moves
         self.moves = ['left', 'right', 'up', 'down']
 
+        # Store all the correct states passed.
+
     def display_grid(self):
         return self.grid.display_grid()
 

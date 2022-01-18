@@ -6,6 +6,10 @@ def random_algo(rushhour):
     Still only for 6x6 puzzles.
     """
     count = 1
+
+    # Made to store the states and moves made
+    archive = []
+    moves_made = []
     
     # Still only applicable to 6x6 puzzles
     while rushhour.grid.grid[2][5] != 'X':
@@ -18,15 +22,18 @@ def random_algo(rushhour):
 
         # Print the grid each time a valid move has been made
         if rushhour.move(random_vehicle, random_direction) == True:
-            print(f'\'{random_vehicle}\' moved {random_direction}:')
-            print('------------')
+
+            # New state
+            state = ''
+
             for i in range(len(rushhour.grid.grid)):
                 for j in range(len(rushhour.grid.grid[i])):
-                    print(rushhour.grid.grid[i][j], end = ' ')
-                print()
-            print()
+                    state += rushhour.grid.grid[i][j]
+
+            # Save the state and move made
+            moves_made.append(f'\'{random_vehicle}\' moved {random_direction}:')
+            archive.append(state)
         
         count += 1
 
-    # Show the amount of steps it took to come up with a random solution
-    print(f'It took {count} random steps.', end = '\n\n')
+    return [archive, moves_made, count]
