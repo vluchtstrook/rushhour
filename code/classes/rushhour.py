@@ -1,5 +1,4 @@
-import code.loader as loader
-
+import code.loader.loader as loader
 
 class RushHour:
     
@@ -16,6 +15,7 @@ class RushHour:
     def display_grid(self):
         return self.grid.display_grid()
 
+    # Move around vehicles inside the grid
     def move(self, vehicle_name, direction):
         if (direction == 'left' or direction == 'right') and self.vehicles[vehicle_name].orientation == 'H':
             return self.grid.move_in_grid(vehicle_name, direction, self.vehicles[vehicle_name].length)

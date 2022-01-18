@@ -24,7 +24,8 @@ if __name__ == "__main__":
     # Welcome user
     print("Welcome to Rushhour.\n")
 
-    # Print starting positions of vehicles on grid
+    # Print starting positions of vehicles on grid (still printing from within the class!!)
     rushhour.display_grid()
 
+    # Run the random algorithm (still printing from within the functions!!)
     randomise.random_algo(rushhour)
