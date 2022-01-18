@@ -1,58 +1,40 @@
 from fileinput import filename
 import random
+import grid
 import loader
 
 
 class RushHour:
     
     def __init__(self, filename):
-        self.filled_grid = loader.load_vehicles(filename)
+        #loader.load_vehicles() returns a variable of type grid class.
+        self.grid = loader.load_vehicles(filename)
     
     def display_grid(self):
-        return self.filled_grid.span_grid()
+        return self.grid.display_grid()
     
-    # def random_algo(self):
-    # # random algorithm to move around vehicles
-    #     count = 1
-    #     while self.filled_grid[2][5] != 'X':
-    #         random_vehicle = random.choice(vehicle_types)
-    #         random_move = random.choice(move_types)
+    def random_algo(self):
+    # random algorithm to move around vehicles
+        count = 1
+        while self.grid.grid[2][5] != 'X':
 
-    #         if move(random_vehicle, random_move) == True:
-    #             print(f'{random_vehicle} moved to {random_move}')
-    #             display_grid()
+            # Choose a random vehicle and store it's name. 
+            # Convert vehicle set to tuple because sets are invalid inputs
+            random_vehicle = random.choice(self.grid.vehicle_names)
 
-    #         else:
-    #             print()
-    #             print('Not a valid move')
+            # Choose a random move 
+            random_move = random.choice(self.grid.moves)
 
-    #         count += 1
-    #     print(f'It took {count} random steps.')
+            if self.grid.move(random_vehicle, random_move) == True:
+                print(f'\'{random_vehicle}\' moved {random_move}:')
+                print('------------')
+                self.display_grid()
+                print()
+            
+            count += 1
+
+        print(f'It took {count} random steps.', end = '\n\n')
     
-
-# Contains all possible moves.
-move_types = ['left', 'right', 'up', 'down']
-
-# def random_algo():
-#     """
-#     Randomly try to move vehicles around untill a solution state has been found.
-#     """
-#     count = 1
-#     while grid[2][5] != 'X':
-#         random_vehicle = random.choice(vehicle_types)
-#         random_move = random.choice(move_types)
-
-#         if move(random_vehicle, random_move) == True:
-#             print(f'{random_vehicle} moved to {random_move}')
-#             display_grid()
-
-#         else:
-#             print()
-#             print('Not a valid move')
-
-#         count += 1
-#     print(f'It took {count} random steps.')
-
 
 if __name__ == "__main__":
     
@@ -60,7 +42,7 @@ if __name__ == "__main__":
 
     # Check command line arguments
     if len(argv) not in [1, 2]:
-        print("Usage: python3 mainfile.py [name]")
+        print("Usage: python3 main.py [name]")
         exit(1)
 
     # Load the requested game or else the first csv file
@@ -77,4 +59,6 @@ if __name__ == "__main__":
     print("Welcome to Rushhour.\n")
 
     # Print starting positions of vehicles on grid
-    print(rushhour.display_grid())
+    rushhour.display_grid()
+
+    rushhour.random_algo()

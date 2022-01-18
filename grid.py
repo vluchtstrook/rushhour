@@ -10,7 +10,7 @@ class Grid:
         self.grid = [['_' for i in range(self.size)] for j in range(self.size)]
         self.moves = ['left', 'right', 'up', 'down']
 
-    def span_grid(self):
+    def display_grid(self):
         # place vehicles in grid
         # 'vehicle' only represents the dictionary keys here
         for vehicle in self.vehicles:
@@ -32,8 +32,9 @@ class Grid:
         #     finish = int(round(self.size / 2.0))
 
         # self.grid[finish - 1].insert(self.size, '<')
+
+        # return ''.join([''.join(row) + '\n' for row in self.grid])
         
-        # return ''.join([' '.join(row) + '\n' for row in self.grid])
     
     def delete_position(self, vehicle_name):
     # deletes the old position of a vehicle before moving
