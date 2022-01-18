@@ -1,14 +1,29 @@
-# rushhour
+## Code
 
-Classes:
+### Algorithms
+- init.py
+- Random algorithm
+- Algorithm 1
+- Algorithm 2
 
-Vehicle
--	Move function
--	Valid_Move function
+### Classes
+- init.py
+- Grid (with class Grid)
+- Vehicle (with class Vehicle)
+- Loader
+- Rushhour (with class Rushhour)
 
-Rush hour
--	List with vehicles 
+### Visualisation
+- init.py
+- visualise
 
-Grid 
--	Span function
--	
+## Data
+- Rushhour6x6_1
+- Rushhour6x6_2
+- etc
+
+## gitignore
+
+## README
+
+## mainfile
