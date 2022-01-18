@@ -1,28 +1,29 @@
-from classes import Car
+import pandas
+from vehicle import Vehicle
+from grid import Grid
 
-def load_grid(filename):
+def load_vehicles(filename):
+    """
+    Read all the grid data from the csv file into a dataframe.
+    Load vehicle data from dataframe into Vehicle classes.
+    """
+
+    vehicles = {}
+    vehicle_names = []
+
+    grid_data = pandas.read_csv(filename)
+
+    for index in grid_data.index: 
+        # create Vehicle object
+        vehicles[grid_data['car'][index]] = Vehicle(grid_data['car'][index], grid_data['orientation'][index], grid_data['col'][index] - 1, grid_data['row'][index] - 1, grid_data['length'][index])
+        
+        # append vehicles (by name) to vehicles dict
+        vehicle_names.append(grid_data['car'][index])
+
+    # determine grid size
+    grid_size = max(grid_data['col'].max(), grid_data['row'].max())
     
-    taken = {}
+    # create Grid object
+    grid = Grid(grid_size, vehicles, vehicle_names)
 
-    with open(filename) as f:
-        # skip header
-        next(f)
-
-        for line in f:
-            line = line.rstrip()
-            split_line = line.split(",")
-
-            car_name = split_line[0]
-            orientation = split_line[1]
-            original_col = split_line[2]
-            original_row = split_line[3]
-            coordinate = (original_col, original_row)
-            length = split_line[4]
-
-            # add coordinate to list of taken spots
-            taken[car_name] = coordinate
-
-            # make Car object
-            car = Car(car_name, orientation, length)
-
-    return taken
+    return grid
