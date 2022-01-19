@@ -1,15 +1,13 @@
 import random
+from code.classes.solution import Solution 
 
 def random_algo(rushhour):
     """
     Contains the process of randomly moving around vehicles in the grid untill a solution state is found.
     Still only for 6x6 puzzles.
     """
-    count = 1
 
-    # Made to store the states and moves made
-    archive = []
-    moves_made = []
+    random_solution = Solution()
 
     # Here we need a calculation for the end position of X
     
@@ -33,9 +31,9 @@ def random_algo(rushhour):
                     state += rushhour.grid.grid[i][j]
 
             # Save the state and move made
-            moves_made.append(f'\'{random_vehicle}\' moved {random_direction}:')
-            archive.append(state)
+            random_solution.moves_made.append(f'\'{random_vehicle}\' moved {random_direction}:')
+            random_solution.archive.append(state)
         
-        count += 1
+        random_solution.count += 1
 
-    return [archive, moves_made, count]
+    return random_solution

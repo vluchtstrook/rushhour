@@ -1,19 +1,19 @@
 
 
-def visualisation(archive, moves_made, count, size):
+def visualisation(random_solution, grid_size):
 
     # Go trough every state/move in the archive
-    for i in range(len(archive)):
+    for i in range(len(random_solution.archive)):
 
-        print(moves_made[i])
+        print(random_solution.moves_made[i])
         print('------------')
 
         j = 0
-        while j < len(archive[i]):
-            for k in range(size):
-                print(archive[i][j + k], end = ' ')
+        while j < len(random_solution.archive[i]):
+            for k in range(grid_size):
+                print(random_solution.archive[i][j + k], end = ' ')
             print()
-            j += size
+            j += grid_size
         print('\n')
 
-    print(f'It took {count} random steps.', end = '\n\n')
+    print(f'It took {random_solution.count} random steps.', end = '\n\n')

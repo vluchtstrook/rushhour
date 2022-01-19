@@ -32,5 +32,5 @@ if __name__ == "__main__":
     random_solution = randomise.random_algo(rushhour)
 
     # Print the state history
-    visualisation.visualisation(random_solution[0], random_solution[1], random_solution[2], rushhour.grid.size)
+    visualisation.visualisation(random_solution, rushhour.grid.size)
 
