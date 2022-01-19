@@ -29,7 +29,7 @@ if __name__ == "__main__":
     rushhour.display_grid()
 
     # Run the random algorithm
-    random_solution = randomise.random_algo(rushhour)
+    random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
 
     # Print the state history
     visualisation.visualisation(random_solution[0], random_solution[1], random_solution[2], rushhour.grid.size)
