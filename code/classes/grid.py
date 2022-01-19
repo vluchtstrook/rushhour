@@ -7,8 +7,11 @@ class Grid:
     def display_grid(self):
         return self.grid
     
-    # Change position of vehicles within the grid.
     def move_in_grid(self, vehicle_name, direction, vehicle_size):
+        """
+        Checks if a certain movement is possible inside the grid.
+        Changes the position of a certain vehicle in a specific direction in the grid.
+        """
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
                 if self.grid[i][j] == vehicle_name:
