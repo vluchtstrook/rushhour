@@ -1,7 +1,8 @@
 import random
 from code.classes.solution import Solution 
+import math
 
-def random_algo(rushhour):
+def random_algo(rushhour, size):
     """
     Contains the process of randomly moving around vehicles in the grid untill a solution state is found.
     Still only for 6x6 puzzles.
@@ -9,10 +10,11 @@ def random_algo(rushhour):
 
     random_solution = Solution()
 
-    # Here we need a calculation for the end position of X
-    
-    # Still only applicable to 6x6 puzzles
-    while rushhour.grid.grid[4][8] != 'X':
+    # Calculate the y-coordinate of the finish
+    finish = size // 2 if size % 2 == 0 else math.ceil(size / 2)
+
+    # Solve game randomly
+    while rushhour.grid.grid[finish - 1][size - 1] != 'X':
 
         # Choose a random vehicle and store it's name
         random_vehicle = random.choice(rushhour.vehicle_names)
