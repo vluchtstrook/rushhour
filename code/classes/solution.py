@@ -1,6 +1,6 @@
 class Solution:
 
     def __init__(self):
-        self.archive = []
+        self.states = []
         self.moves_made = []
         self.count = 1

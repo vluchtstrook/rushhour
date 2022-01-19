@@ -34,7 +34,7 @@ def random_algo(rushhour, size):
 
             # Save the state and move made
             random_solution.moves_made.append(f'\'{random_vehicle}\' moved {random_direction}:')
-            random_solution.archive.append(state)
+            random_solution.states.append(state)
         
         random_solution.count += 1
 
