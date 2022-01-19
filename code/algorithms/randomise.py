@@ -10,9 +10,11 @@ def random_algo(rushhour):
     # Made to store the states and moves made
     archive = []
     moves_made = []
+
+    # Here we need a calculation for the end position of X
     
     # Still only applicable to 6x6 puzzles
-    while rushhour.grid.grid[2][5] != 'X':
+    while rushhour.grid.grid[4][8] != 'X':
 
         # Choose a random vehicle and store it's name
         random_vehicle = random.choice(rushhour.vehicle_names)
@@ -21,7 +23,7 @@ def random_algo(rushhour):
         random_direction = random.choice(rushhour.moves)
 
         # Print the grid each time a valid move has been made
-        if rushhour.move(random_vehicle, random_direction) == True:
+        if rushhour.move(random_vehicle, random_direction):
 
             # New state
             state = ''

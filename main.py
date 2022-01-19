@@ -25,12 +25,12 @@ if __name__ == "__main__":
     # Welcome user
     print("Welcome to Rushhour.\n")
 
-    # Print starting positions of vehicles on grid (still printing from within the class!!)
+    # Print starting positions of vehicles on grid
     rushhour.display_grid()
 
-    # Run the random algorithm (still printing from within the functions!!)
+    # Run the random algorithm
     random_solution = randomise.random_algo(rushhour)
 
     # Print the state history
-    visualisation.visualisation(random_solution[0], random_solution[1], random_solution[2])
+    visualisation.visualisation(random_solution[0], random_solution[1], random_solution[2], rushhour.grid.size)
 

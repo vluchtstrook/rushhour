@@ -28,7 +28,7 @@ class Grid:
                         self.grid[i + vehicle_size - 1][j] = '_'
                         return True
                     
-                    if direction == 'down' and i + vehicle_size <= self.size -1 and self.grid[i + vehicle_size][j] == "_":
+                    if direction == 'down' and i + vehicle_size <= self.size - 1 and self.grid[i + vehicle_size][j] == "_":
                         self.grid[i + vehicle_size][j] = vehicle_name
                         self.grid[i][j] = '_'
                         return True
