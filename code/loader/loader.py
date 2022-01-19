@@ -7,6 +7,7 @@ def load_vehicles(filename):
     Read all the grid data from the csv file into a dataframe.
     Load vehicle data from dataframe into Vehicle classes.
     """
+    
     # Load data from the csv file
     grid_data = pandas.read_csv(filename)
 
@@ -17,6 +18,7 @@ def load_vehicles(filename):
     vehicle_names = []
 
     for index in grid_data.index: 
+        
         # Create Vehicle object and add it (by name) to the dictionary
         vehicles[grid_data['car'][index]] = Vehicle(grid_data['car'][index], grid_data['orientation'][index], grid_data['length'][index])
         
@@ -26,6 +28,11 @@ def load_vehicles(filename):
     return vehicles, vehicle_names
 
 def load_grid(filename):
+    """
+    Read all the grid data from the csv file into a dataframe.
+    Creates an (empty) gridarray of _ and changes the empty places for cars from the dataframe.
+    Creates a Grid object with a gridsize and the gridarray.
+    """
     
     # Load data from the csv file
     grid_data = pandas.read_csv(filename)
@@ -37,6 +44,7 @@ def load_grid(filename):
     grid_array = [['_' for i in range(grid_size)] for j in range(grid_size)]
 
     for index in grid_data.index: 
+
         # set the vehicles inside the 2x2 array, which represents the grid
         for i in range(grid_data['length'][index]):
             if grid_data['orientation'][index] == 'H':

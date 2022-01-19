@@ -14,11 +14,3 @@ class Vehicle():
     def length(self):
         return self.length
 
-    def col(self):
-        return self.col
-    
-    def row(self):
-        return self.row
-    
-    def car(self):
-        return self.car
