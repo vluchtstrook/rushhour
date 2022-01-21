@@ -3,4 +3,4 @@ class Solution:
     def __init__(self):
         self.states = []
         self.moves_made = []
-        self.count = 1
+        self.count = 0
