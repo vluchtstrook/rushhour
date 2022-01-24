@@ -1,3 +1,5 @@
+import math
+
 class Grid:
     
     def __init__(self, size, new_grid):
@@ -6,6 +8,14 @@ class Grid:
 
     def display_grid(self):
         return self.grid
+
+    def win(self):
+        # Calculate the y-coordinate of the finish
+        finish = self.size // 2 if self.size % 2 == 0 else math.ceil(self.size / 2)
+
+        if self.grid[finish - 1][self.size - 1] == 'X':
+            return True
+        return False
     
     def move_in_grid(self, vehicle_name, direction, vehicle_size):
         """

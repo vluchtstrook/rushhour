@@ -18,13 +18,17 @@ class RushHour:
     def display_grid(self):
         return self.grid.display_grid()
 
+    def possible_move(self, vehicle_name, direction):
+        if (direction == 'left' or direction == 'right') and self.vehicles[vehicle_name].orientation == 'H':
+            return True
+        elif (direction == 'up' or direction == 'down') and self.vehicles[vehicle_name].orientation == 'V':
+            return True
+        return False
+
     def move(self, vehicle_name, direction):
         """
         Checks if the orientation of the vehicle and the direction to move is possible.
         And move the vehicle inside the grid.
         """
-        if (direction == 'left' or direction == 'right') and self.vehicles[vehicle_name].orientation == 'H':
-            return self.grid.move_in_grid(vehicle_name, direction, self.vehicles[vehicle_name].length)
-
-        elif (direction == 'up' or direction == 'down') and self.vehicles[vehicle_name].orientation == 'V':
+        if self.possible_move(vehicle_name, direction):
             return self.grid.move_in_grid(vehicle_name, direction, self.vehicles[vehicle_name].length)

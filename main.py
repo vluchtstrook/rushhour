@@ -1,6 +1,7 @@
 from fileinput import filename
 from code.classes.rushhour import RushHour
 import code.algorithms.randomise as randomise
+import code.algorithms.breadth_first as breadth_first
 import code.visualisation.visualisation as visualisation
 
 if __name__ == "__main__":
@@ -25,12 +26,13 @@ if __name__ == "__main__":
     # Welcome user
     print("Welcome to Rushhour.\n")
 
-    # Print starting positions of vehicles on grid
-    rushhour.display_grid()
+    # ----------------------------------------- Run the random algorithm ---------------------------------------
+    # random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
+    # visualisation.visualisation(random_solution, rushhour.grid.size)
 
-    # Run the random algorithm
-    random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
-
-    # Print the state history
-    visualisation.visualisation(random_solution, rushhour.grid.size)
+    # ------------------------------------- Run the breadth first algorithm ------------------------------------
+    print("This is the breadth first algorithm:\n")
+    breadth_first_class = breadth_first.BreadthFirst(rushhour)
+    breadth_first_solution = breadth_first_class.run()
+    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)  
 
