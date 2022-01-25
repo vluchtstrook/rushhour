@@ -9,12 +9,7 @@ class RushHour:
 
         # loader.load_grid() returns the initial grid class.
         self.grid = loader.load_grid(filename) 
-
-        # possible moves
-        self.moves = ['left', 'right', 'up', 'down']
-
-    def display_grid(self):
-        return self.grid.display_grid()
+        
 
     def possible_moves(self, grid):
         """
@@ -43,26 +38,6 @@ class RushHour:
 
         return moves
 
-    # def check_orientation(self, vehicle_name, direction):
-    #     """
-    #     Checks wheter a certain vehicle is orientationaly allow to move a certain direction.
-    #     """
-    #     if (direction == 'left' or direction == 'right') and self.vehicles[vehicle_name].orientation == 'H':
-    #         return True
-    #     elif (direction == 'up' or direction == 'down') and self.vehicles[vehicle_name].orientation == 'V':
-    #         return True
-    #     return False
-
-    # def move(self, vehicle_name, direction):
-    #     """
-    #     Checks whether the direction of the move and the vehicles orientation match.
-
-    #     If so, the vehicle is tried to moved in that direction within the grid.
-
-    #     Returns True or False dependent on whether it succeeded.
-    #     """
-    #     if self.check_orientation(vehicle_name, direction):
-    #         return self.grid.move_in_grid(vehicle_name, direction, self.vehicles[vehicle_name].length)
 
     @staticmethod
     def grid_to_string(grid):

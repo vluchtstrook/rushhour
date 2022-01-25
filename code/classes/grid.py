@@ -6,13 +6,10 @@ class Grid:
         self.size = size
         self.grid = new_grid
 
-    def display_grid(self):
-        return self.grid
-
     def win(self):
         # Calculate the y-coordinate of the finish
         finish = self.size // 2 if self.size % 2 == 0 else math.ceil(self.size / 2)
-
+        
         if self.grid[finish - 1][self.size - 1] == 'X':
             return True
         return False

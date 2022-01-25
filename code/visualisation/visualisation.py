@@ -5,7 +5,6 @@ def visualisation(solution, grid_size):
     # Go trough every state/move in the archive
     for i in range(len(solution.path)):
 
-        # print(solution.moves_made[i])
         print('------------')
 
         j = 0

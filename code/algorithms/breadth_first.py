@@ -60,7 +60,6 @@ class BreadthFirst():
                     # Check whether child is a winning state
                     if child_grid.win():
                         self.solution.path = self.get_path(child_grid, parent_grid, self.path_memory)
-                        self.solution.moves_made.append('This is still without memory path.')
                         return self.solution
                     
                     # Add child to the queue if its state has not been in the queue before

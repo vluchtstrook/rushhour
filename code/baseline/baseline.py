@@ -1,20 +1,34 @@
 from fileinput import filename
+from code.algorithms.breadth_first import BreadthFirst
+from code.algorithms.depth_first import DepthFirst
 from code.classes.rushhour import RushHour
 import code.algorithms.randomise as randomise
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-filename = 'data/Rushhour9X9_4.csv'
+filename = 'data/Rushhour6x6_1.csv'
 
 random_solutions = []
 buckets = []
 nr_solutions_per_bucket = []
 
+# for i in range(1000):
+#     rushhour = RushHour(filename)
+#     random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
+#     random_solutions.append(random_solution.count_unique_states)
+
+# for i in range(1000):
+#     rushhour = RushHour(filename)
+#     breadth_first_class = BreadthFirst(rushhour)
+#     breadth_first_solution = breadth_first_class.run()
+#     random_solutions.append(breadth_first_solution.count_states)
+
 for i in range(1000):
     rushhour = RushHour(filename)
-    random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
-    random_solutions.append(random_solution.count_unique_states)
+    depth_first_class = DepthFirst(rushhour)
+    depth_first_solution = depth_first_class.run()
+    random_solutions.append(depth_first_solution.count_states)
 
 max_solution_count = max(random_solutions)
 
