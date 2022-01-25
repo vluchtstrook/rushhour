@@ -1,4 +1,5 @@
 from fileinput import filename
+from code.algorithms.depth_first import DepthFirst
 from code.classes.rushhour import RushHour
 import code.algorithms.randomise as randomise
 import code.algorithms.breadth_first as breadth_first
@@ -31,8 +32,14 @@ if __name__ == "__main__":
     # visualisation.visualisation(random_solution, rushhour.grid.size)
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    print("This is the breadth first algorithm:\n")
-    breadth_first_class = breadth_first.BreadthFirst(rushhour)
-    breadth_first_solution = breadth_first_class.run()
-    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)  
+    # print("This is the Breadth First algorithm:\n")
+    # breadth_first_class = breadth_first.BreadthFirst(rushhour)
+    # breadth_first_solution = breadth_first_class.run()
+    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)  
+
+    # ------------------------------------- Run the breadth first algorithm ------------------------------------
+    print("This is the Depth First algorithm:\n")
+    depth_first_class = DepthFirst(rushhour)
+    depth_first_solution = depth_first_class.run()
+    visualisation.visualisation(depth_first_solution, rushhour.grid.size)  
 
