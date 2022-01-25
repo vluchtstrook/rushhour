@@ -16,16 +16,6 @@ def random_algo(rushhour, size):
     # Solve game randomly
     while rushhour.grid.grid[finish - 1][size - 1] != 'X':
 
-        # Create empty state
-        state = ''
-
-        # Add initial state to states list
-        for i in range(len(rushhour.grid.grid)):
-            for j in range(len(rushhour.grid.grid[i])):
-                state += rushhour.grid.grid[i][j]
-        
-        random_solution.states.append(state)
-
         # Choose a random vehicle and store it's name
         random_vehicle = random.choice(rushhour.vehicle_names)
 
@@ -34,6 +24,9 @@ def random_algo(rushhour, size):
 
         # Print the grid each time a valid move has been made
         if rushhour.move(random_vehicle, random_direction):
+
+            # Create empty state
+            state = ''
 
             for i in range(len(rushhour.grid.grid)):
                 for j in range(len(rushhour.grid.grid[i])):
