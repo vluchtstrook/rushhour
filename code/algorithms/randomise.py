@@ -2,7 +2,7 @@ import random
 from code.classes.solution import Solution 
 import math
 
-def random_algo(rushhour, size):
+def random_algo(rushhour):
     """
     Contains the process of randomly moving around vehicles in the grid untill a solution state is found.
     Still only for 6x6 puzzles.
@@ -10,32 +10,30 @@ def random_algo(rushhour, size):
 
     random_solution = Solution()
 
-    # Calculate the y-coordinate of the finish
-    finish = size // 2 if size % 2 == 0 else math.ceil(size / 2)
+    # Add the initial state to the path
+    random_solution.path = [rushhour.grid_to_string(rushhour.grid)]
+
+    archive = set()
 
     # Solve game randomly
-    while rushhour.grid.grid[finish - 1][size - 1] != 'X':
-
-        # Choose a random vehicle and store it's name
-        random_vehicle = random.choice(rushhour.vehicle_names)
-
-        # Choose a random move 
-        random_direction = random.choice(rushhour.moves)
-
-        # Print the grid each time a valid move has been made
-        if rushhour.move(random_vehicle, random_direction):
-
-            # New state
-            state = ''
-
-            for i in range(len(rushhour.grid.grid)):
-                for j in range(len(rushhour.grid.grid[i])):
-                    state += rushhour.grid.grid[i][j]
-
-            # Save the state and move made
-            random_solution.moves_made.append(f'\'{random_vehicle}\' moved {random_direction}:')
-            random_solution.states.append(state)
+    while not rushhour.grid.win():
         
-        random_solution.count += 1
+        # Get all moves possible in the current state
+        possible_moves = rushhour.possible_moves(rushhour.grid.grid)
+
+        # Choose random a move
+        random_move = random.choice(possible_moves)
+
+        # Execute the random move
+        rushhour.grid.move_in_grid(random_move[0], random_move[1], random_move[2])
+
+        # Save all unique states
+        archive.add(rushhour.grid_to_string(rushhour.grid))
+
+        # Add the state to the path
+        random_solution.path.insert(0, rushhour.grid_to_string(rushhour.grid))
+    
+    random_solution.count_states = len(random_solution.path)
+    random_solution.count_unique_states = len(archive)
 
     return random_solution

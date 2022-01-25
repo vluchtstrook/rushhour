@@ -64,18 +64,20 @@ class RushHour:
         if self.check_orientation(vehicle_name, direction):
             return self.grid.move_in_grid(vehicle_name, direction, self.vehicles[vehicle_name].length)
 
-    def grid_to_string(self, grid):
+    @staticmethod
+    def grid_to_string(grid):
         """
-        Converts a 2x2 list grid to a string grid.
+        Converts a grid class to a string grid.
         """
         string_grid = ''
 
-        for i in range(self.grid.size):
-            for j in range(self.grid.size):
+        for i in range(grid.size):
+            for j in range(grid.size):
                 string_grid += grid.grid[i][j]
 
         return string_grid
     
+
     def string_to_grid(self, string_grid):
         """
         Converts a string grid to a 2x2 list grid.

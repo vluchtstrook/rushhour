@@ -1,6 +1,7 @@
 class Solution:
 
     def __init__(self):
-        self.states = []
+        self.path = []
         self.moves_made = []
-        self.count = 0
+        self.count_unique_states = 0
+        self.count_states = 0

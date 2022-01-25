@@ -28,18 +28,19 @@ if __name__ == "__main__":
     print("Welcome to Rushhour.\n")
 
     # ----------------------------------------- Run the random algorithm ---------------------------------------
-    # random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
+    # print("This is the Random algorithm:\n")
+    # random_solution = randomise.random_algo(rushhour)
     # visualisation.visualisation(random_solution, rushhour.grid.size)
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    # print("This is the Breadth First algorithm:\n")
-    # breadth_first_class = breadth_first.BreadthFirst(rushhour)
-    # breadth_first_solution = breadth_first_class.run()
-    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)  
+    print("This is the Breadth First algorithm:\n")
+    breadth_first_class = breadth_first.BreadthFirst(rushhour)
+    breadth_first_solution = breadth_first_class.run()
+    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)  
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    print("This is the Depth First algorithm:\n")
-    depth_first_class = DepthFirst(rushhour)
-    depth_first_solution = depth_first_class.run()
-    visualisation.visualisation(depth_first_solution, rushhour.grid.size)  
+    # print("This is the Depth First algorithm:\n")
+    # depth_first_class = DepthFirst(rushhour)
+    # depth_first_solution = depth_first_class.run()
+    # visualisation.visualisation(depth_first_solution, rushhour.grid.size)  
 

@@ -3,17 +3,18 @@
 def visualisation(solution, grid_size):
 
     # Go trough every state/move in the archive
-    for i in range(len(solution.states)):
+    for i in range(len(solution.path)):
 
-        print(solution.moves_made[i])
+        # print(solution.moves_made[i])
         print('------------')
 
         j = 0
-        while j < len(solution.states[i]):
+        while j < len(solution.path[i]):
             for k in range(grid_size):
-                print(solution.states[i][j + k], end = ' ')
+                print(solution.path[i][j + k], end = ' ')
             print()
             j += grid_size
-        print('\n')
+        print()
 
-    print(f'It took {solution.count} steps.', end = '\n\n')
+    print(f'The solutions path length {len(solution.path)}')
+    print(f'It took creating {solution.count_states} states, of which {solution.count_unique_states} unique.', end = '\n\n')

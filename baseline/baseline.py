@@ -14,7 +14,7 @@ nr_solutions_per_bucket = []
 for i in range(1000):
     rushhour = RushHour(filename)
     random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
-    random_solutions.append(random_solution.count)
+    random_solutions.append(random_solution.count_unique_states)
 
 max_solution_count = max(random_solutions)
 
