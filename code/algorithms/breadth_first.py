@@ -84,7 +84,7 @@ class BreadthFirst():
         # Turn parent grid into a string 
         parent_grid = self.rushhour.grid_to_string(parent_grid)
 
-        # Find all child - parent relations and add them to the path
+        # Find all child - parent relations and add each parent to the path
         while parent_grid != '':
             path.insert(0, parent_grid)
             parent_grid = path_memory[parent_grid]
