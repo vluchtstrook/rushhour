@@ -41,7 +41,7 @@ def load_grid(filename):
     grid_size = max(grid_data['col'].max(), grid_data['row'].max())
 
     # 2x2 array to respresent the grid
-    grid_array = [['_' for i in range(grid_size)] for j in range(grid_size)]
+    grid_array = [['_' for _ in range(grid_size)] for _ in range(grid_size)]
 
     for index in grid_data.index: 
 
@@ -52,7 +52,5 @@ def load_grid(filename):
             else:
                 grid_array[grid_data['row'][index] + i - 1][grid_data['col'][index] - 1] = grid_data['car'][index]
 
-    # create Grid object
-    grid = Grid(grid_size, grid_array)
-
-    return grid
+    # return grid
+    return Grid(grid_size, grid_array)
