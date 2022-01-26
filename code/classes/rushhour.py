@@ -5,7 +5,7 @@ class RushHour:
     def __init__(self, filename):
         
         # loader.load_vehicles() returns a dictionary with all vehicle classes and a list with the keys.
-        (self.vehicles, self.vehicle_names) = loader.load_vehicles(filename)
+        self.vehicles, self.vehicle_names = loader.load_vehicles(filename)
 
         # loader.load_grid() returns the initial grid class.
         self.grid = loader.load_grid(filename) 
