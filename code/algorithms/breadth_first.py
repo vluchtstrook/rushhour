@@ -1,5 +1,4 @@
 import copy
-from code.classes import solution
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
@@ -7,7 +6,7 @@ class BreadthFirst():
     """
     This algorithm builds a queue of possible state of the game.
 
-    Only unique states are in the queue (no repetitions of states)
+    Only unique states are in the queue (no repetitions of states).
     """
 
     def __init__(self, rushhour) -> None:
@@ -40,13 +39,13 @@ class BreadthFirst():
             # Get the next parent state from the grid
             parent_grid = self.get_next_state()
 
-            # Check whether we did not had this state as a parent before
+            # Check whether state is unique parent
             if parent_grid not in self.archive:
 
-                # Turn the parent state from string-type into 2x2 list-type
+                # Turn parent state from string-type into 2x2 list-type
                 parent_grid = self.rushhour.string_to_grid(parent_grid)
 
-                # Turn the parent state into a Grid class
+                # Turn parent state into instance of Grid class
                 parent_grid = Grid(self.initial_grid.size, parent_grid)
 
                 # Create every possible child through every possible move
@@ -62,13 +61,13 @@ class BreadthFirst():
                         self.solution.path = self.get_path(child_grid, parent_grid, self.path_memory)
                         return self.solution
                     
-                    # Add child to the queue if its state has not been in the queue before
+                    # Add child to the queue if child is uniqe
                     if self.rushhour.grid_to_string(child_grid) not in self.archive:
                         self.solution.count_unique_states += 1
                         self.queue.append(self.rushhour.grid_to_string(child_grid))
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
-                # Add the parent to the archive to rember its state has already been investigated
+                # Add parent to the archive
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
 
 
@@ -77,7 +76,7 @@ class BreadthFirst():
         Returns the path that led to the solution state.
         """
 
-        # Beginning with inserting the winning state found
+        # Insert winning state to path
         path = [self.rushhour.grid_to_string(child_grid)]
 
         # Turn parent grid into a string 
