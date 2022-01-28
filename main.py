@@ -1,5 +1,6 @@
 from fileinput import filename
 from code.algorithms.A_star import Astar
+from code.algorithms.greedy import Greedy
 from code.algorithms.depth_first import DepthFirst
 from code.algorithms.breadth_first import BreadthFirst
 from code.classes.rushhour import RushHour
@@ -53,9 +54,19 @@ if __name__ == "__main__":
  # ------------------------------------- Run the A Star algorithm ------------------------------------
     Astar_class = Astar(rushhour)
     Astar_solution = Astar_class.run()
-    visualisation.visualisation(Astar_solution, rushhour.grid.size)
+    # visualisation.visualisation(Astar_solution, rushhour.grid.size)
     print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
     # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
     # # GUI still works with a max of 13 vehicles
     # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
     # print("This was the Depth First algorithm.\n")   
+
+# ------------------------------------- Run the Greedy algorithm ------------------------------------
+    Greedy_class = Greedy(rushhour)
+    Greedy_solution = Greedy_class.run()
+    # visualisation.visualisation(Greedy_solution, rushhour.grid.size)
+    # print(f"This was the Greedy algorithm {game_name[:-4]}.\n")   
+    # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
+    # # GUI still works with a max of 13 vehicles
+    # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
+    # print("This was the Depth First algorithm.\n")  
