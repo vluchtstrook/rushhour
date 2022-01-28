@@ -1,4 +1,5 @@
 from fileinput import filename
+from code.algorithms.A_star import Astar
 from code.algorithms.depth_first import DepthFirst
 from code.classes.rushhour import RushHour
 import code.algorithms.randomise as randomise
@@ -30,17 +31,22 @@ if __name__ == "__main__":
     # ----------------------------------------- Run the random algorithm ---------------------------------------
     # random_solution = randomise.random_algo(rushhour)
     # visualisation.visualisation(random_solution, rushhour.grid.size)
-    # print("This was the Random algorithm.\n") 
+    # print(f"This was the Random algorithm on {game_name[:-4]}.\n") 
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    breadth_first_class = breadth_first.BreadthFirst(rushhour)
-    breadth_first_solution = breadth_first_class.run()
-    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
-    print("This was the Breadth First algorithm.\n")  
+    # breadth_first_class = breadth_first.BreadthFirst(rushhour)
+    # breadth_first_solution = breadth_first_class.run()
+    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
+    # print(f"This was the Breadth First algorithm {game_name[:-4]}.\n")  
 
     # ------------------------------------- Run the depth first algorithm ------------------------------------
     # depth_first_class = DepthFirst(rushhour)
     # depth_first_solution = depth_first_class.run()
     # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
-    # print("This was the Depth First algorithm.\n")   
+    # print(f"This was the Depth First algorithm {game_name[:-4]}.\n")   
 
+ # ------------------------------------- Run the A Star algorithm ------------------------------------
+    Astar_class = Astar(rushhour)
+    Astar_solution = Astar_class.run()
+    visualisation.visualisation(Astar_solution, rushhour.grid.size)
+    print(f"This was the A Star algorithm {game_name[:-4]}.\n")   

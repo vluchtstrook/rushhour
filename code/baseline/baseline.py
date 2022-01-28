@@ -13,10 +13,10 @@ random_solutions = []
 buckets = []
 nr_solutions_per_bucket = []
 
-# for i in range(1000):
-#     rushhour = RushHour(filename)
-#     random_solution = randomise.random_algo(rushhour, rushhour.grid.size)
-#     random_solutions.append(random_solution.count_unique_states)
+for i in range(1000):
+    rushhour = RushHour(filename)
+    random_solution = randomise.random_algo(rushhour)
+    random_solutions.append(random_solution.count_unique_states)
 
 # for i in range(1000):
 #     rushhour = RushHour(filename)
@@ -24,11 +24,11 @@ nr_solutions_per_bucket = []
 #     breadth_first_solution = breadth_first_class.run()
 #     random_solutions.append(breadth_first_solution.count_states)
 
-for i in range(1000):
-    rushhour = RushHour(filename)
-    depth_first_class = DepthFirst(rushhour)
-    depth_first_solution = depth_first_class.run()
-    random_solutions.append(depth_first_solution.count_states)
+# for i in range(1000):
+#     rushhour = RushHour(filename)
+#     depth_first_class = DepthFirst(rushhour)
+#     depth_first_solution = depth_first_class.run()
+#     random_solutions.append(depth_first_solution.count_states)
 
 max_solution_count = max(random_solutions)
 

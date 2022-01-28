@@ -31,7 +31,7 @@ def random_algo(rushhour):
         archive.add(rushhour.grid_to_string(rushhour.grid))
 
         # Add the state to the path
-        random_solution.path.insert(0, rushhour.grid_to_string(rushhour.grid))
+        random_solution.path.append(rushhour.grid_to_string(rushhour.grid))
     
     random_solution.count_states = len(random_solution.path)
     random_solution.count_unique_states = len(archive)
