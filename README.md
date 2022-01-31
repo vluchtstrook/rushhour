@@ -38,34 +38,19 @@ De oplossing kan uit wel 80.000 verschillende states bestaan. Dat wil zeggen dat
 Het kan zo zijn dat een bepaalde state (positionering van de voertuigen op het bord) heel vaak voorkomt om tot een oplossing te komen, waardoor het bord herhaaldelijk dezelfde stappen zou kunnen nemen. Dit werkt heel onefficient voor de snelste weg naar de uitgang.
 
 #### Het breadth first algoritme
+Ons tweede algoritme is het breadth first algoritme. 
+Bij dit algoritme wordt er in een boom structuur gekeken naar de verschillende states totdat er een oplossing is gevonden. 
+Bij deze aanpak wordt er per state gekeken hoeveel mogelijke child-states er mogelijk zijn (hierbij is een child-state steeds een andere state waarbij er 1 voertuig is veranderd ten opzichte van de huidige state (parent state).
+Alle staten die hiermee wordt gecreeerd worden opgeslagen in een dictionary, genaamd path_memory.
+Dit herhaalt zich net zo lang er een state komt waarbij de rode auto op de eindpositie staat en er een oplossing is gevonden. 
+Dan wordt het pad herleidt door te kijken van welke parent state de 'winning' child state afkomstig is.
+Dit wordt net zo lang gedaan totdat er geen parent state meer van een child state te vinden is en dit geeft aan dat die state de beginsituatie is. 
+
+##### Voordelen
+Het belangrijkste voordeel is dat er altijd de kortste weg naar de uitgang van het bord gevonden wordt als er een oplossing wordt gegeven.
+Doordat het per laag in de boomstructuur kijkt naar de mogelijke volgende staten zal de eerste uitkomst ook de snelste route zijn. 
+
+##### Nadelen
 
 
-## Code
 
-### Algorithms
-- init.py
-- Random algorithm
-- Algorithm 1
-- Algorithm 2
-
-### Classes
-- init.py
-- Grid (with class Grid)
-- Vehicle (with class Vehicle)
-- Loader
-- Rushhour (with class Rushhour)
-
-### Visualisation
-- init.py
-- visualise
-
-## Data
-- Rushhour6x6_1
-- Rushhour6x6_2
-- etc
-
-## gitignore
-
-## README
-
-## mainfile
