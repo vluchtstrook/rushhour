@@ -1,16 +1,24 @@
+from statistics import mode
+from code.algorithms.randomise import random_winning_state
 import copy
 import math
 import heapq
 import queue
+from code.algorithms.randomise import random_algo, random_winning_state
 from code.classes import solution, vehicle
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
-class Astar():
-    """
-    This algorithm builds a queue of possible state of the game.
 
-    Only unique states are in the queue (no repetitions of states)
+class BestFirst():
+    """
+    This algorithm builds a priority queue of possible states of the game.
+
+    Priority is given based on heuristic 1 and 4.
+
+    Only unique states are in the queue (no repetitions of states).
+    
+    Stops when a winning state is found, or the queue is empty.
     """
 
     def __init__(self, rushhour) -> None:
@@ -19,6 +27,7 @@ class Astar():
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
         self.vehicles = rushhour.vehicles
+        self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour)
 
         # Create the priority queue
         self.heap = []
@@ -62,6 +71,7 @@ class Astar():
 
                 # Create every possible child through every possible move
                 for move in self.rushhour.possible_moves(parent_grid.grid):
+
                     child_grid = copy.deepcopy(parent_grid)
                     self.solution.count_states += 1
 
@@ -78,7 +88,7 @@ class Astar():
 
                         self.solution.count_unique_states += 1
 
-                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + parent_depth + 1, parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
+                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + self.H4_costs(child_grid, self.average_win_grid), parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
 
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
@@ -134,48 +144,86 @@ class Astar():
         return len(obstacles[0]) + child_grid.size - obstacles[1] + 2
 
 
-    # def H2_costs(self, child_grid):
-    #     """
-    #     Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
+    def H2_costs(self, child_grid):
+        """
+        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
 
-    #     """
-    #     obstacles = self.vehicles_in_the_way(child_grid)
+        """
+        obstacles = self.vehicles_in_the_way(child_grid)
 
-    #     finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
+        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
 
-    #     for obstacle in obstacles[0]:
-    #         vehicle_name = obstacle
-    #         obstacle_info = {}
+        score = 0
 
-    #         for i in range(child_grid.size):
-    #             if child_grid.grid[finish_row_index -1 - 1][i] == vehicle_name and child_grid.grid[finish_row_index -1 + 1][i] != vehicle_name:
-    #                 score = 0
-    #                 place = i
-    #                 vehicle_len = self.vehicles[vehicle_name].length
+        for obstacle in obstacles[0]:
+            vehicle_name = obstacle
+            obstacle_info = {}
+            score = 0
 
-    #                 if finish_row_index - 1 - vehicle_len <= 0 or child_grid.grid[finish_row_index - 1 - vehicle_len][i] != '_':
-    #                     score += 1
+            for i in range(child_grid.size):
+                if child_grid.grid[finish_row_index - 1][i] == vehicle_name:
+                    for j in range(child_grid.size):
+                        if child_grid.grid[j][i] != vehicle_name and child_grid.grid[j][i] != '_':
+                            score += 1
+            
+        return score
 
-    #                 for i in range(vehicle_len)
-    #                     if finish_row_index - 1 - i - 1 != '_':
-    #                         score += 1
+    def H3_costs(self, child_grid):
+        """
+        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
+        """
+        obstacles = self.vehicles_in_the_way(child_grid)
+        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
 
-    #                 obstacle_info[vehicle_name] = score
+        first_obstacle = ''
+        index_first_obstacle = 0
 
-    #             elif child_grid.grid[finish_row_index -1 - 1][i] != vehicle_name and child_grid.grid[finish_row_index -1 + 1][i] == vehicle_name:
-    #                 place = i
-    #                 obstacle_info[vehicle_name] = ['below', place]
-    #             elif child_grid.grid[finish_row_index -1 - 1][i] == vehicle_name and child_grid.grid[finish_row_index -1 + 1][i] == vehicle_name:
-    #                 place = i 
-    #                 obstacle_info[vehicle_name] = ['both', place]
+        for i in range(child_grid.size - obstacles[1] + 2):
+            if child_grid.grid[finish_row_index - 1][i + obstacles[1]] != '_':
+                first_obstacle = child_grid.grid[finish_row_index - 1][i + obstacles[1]]
+                index_first_obstacle = i
+                break
 
-    #     for obstacle in obstacles[0]:
-    #         score = 0
-    #         if obstacle_info[obstacle][0] == 'above':
-    #             vehicle_len = self.vehicles[obstacle].length
+        score = 0
 
-    #             if child_grid.grid[finish_row_index -1 - vehicle_len][i]
+        if first_obstacle != '':
+            for i in range(child_grid.size):
+                if child_grid.grid[i][index_first_obstacle] != first_obstacle and child_grid.grid[i][index_first_obstacle] != '_':
+                            score += 1
+        return score  
 
+    def H4_costs(self, grid, average_win_grid):
+        score = 0
+        for i in range(len(grid.grid)):
+            for j in range(len(grid.grid)):
+                if grid.grid[i][j] != average_win_grid[i][j]:
+                    score += 1
+        return score
+        
+    def prefered_position(self, grid, rushhour):
+        random_winning_states = []
+        i = 0
 
+        while i < 10:
+            random_win = random_winning_state(grid, rushhour)
+            random_winning_states.append(random_win)
+            i += 1
+        
+        average_win_grid = [[[] for _ in range(rushhour.grid.size)] for _ in range(rushhour.grid.size)]
+        
+        for i in range(len(random_winning_states)):
+
+            for j in range(len(random_winning_states[i])):
+                for k in range(len(random_winning_states[i][j])):
+                    average_win_grid[j][k].append(random_winning_states[i][j][k])
+
+        for i in range(len(average_win_grid)):
+            for j in range(len(average_win_grid[i])):
+                average_win_grid[i][j] = most_common(average_win_grid[i][j])
+        
+        return average_win_grid
+
+def most_common(lst):
+    return max(set(lst), key=lst.count)
 
 

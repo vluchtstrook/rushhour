@@ -1,3 +1,6 @@
+from copy import deepcopy
+import random
+from code.classes.solution import Solution 
 import random
 from code.classes.solution import Solution 
 import math
@@ -37,3 +40,23 @@ def random_algo(rushhour):
     random_solution.count_unique_states = len(archive)
 
     return random_solution
+
+def random_winning_state(grid, rushhour):
+    """
+    Returns a winning state after executing random moves, untill one is found.
+    """
+    grid = deepcopy(grid)
+
+    # Solve game randomly
+    while not grid.win():
+        
+        # Get all moves possible in the current state
+        possible_moves = rushhour.possible_moves(grid.grid)
+
+        # Choose random a move
+        random_move = random.choice(possible_moves)
+
+        # Execute the random move
+        grid.move_in_grid(random_move[0], random_move[1], random_move[2])
+
+    return grid.grid
