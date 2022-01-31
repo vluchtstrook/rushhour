@@ -1,5 +1,5 @@
 from fileinput import filename
-from code.algorithms.randomise import 
+import code.algorithms.randomise as randomise
 from code.algorithms.astar import Astar
 from code.algorithms.greedy import Greedy
 from code.algorithms.depth_first import DepthFirst
@@ -35,10 +35,10 @@ if __name__ == "__main__":
     print("Welcome to Rushhour.\n")
 
     # ----------------------------------------- Run the random algorithm ---------------------------------------
-    # random_solution = randomise.random_algo(rushhour)
-    # visualisation.visualisation(random_solution, rushhour.grid.size)
-    # print(f"This was the Random algorithm on {game_name[:-4]}.\n") 
-    # output_to_csv.output(rushhour.grid.size, random_solution.path, game_name, algorithm='Random')
+    random_solution = randomise.random_algo(rushhour)
+    visualisation.visualisation(random_solution, rushhour.grid.size)
+    print(f"This was the Random algorithm on {game_name[:-4]}.\n") 
+    output_to_csv.output(rushhour.grid.size, random_solution.path, game_name, algorithm='Random')
 
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
