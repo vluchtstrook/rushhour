@@ -5,8 +5,8 @@ class DepthFirst(BreadthFirst):
     """
     A Depth First algorithm.
 
-    Almost all of the functions are eqal to those of the BreadthFirst class, which is why
-    we use that as a parent class.
+    Almost all of the functions are equal to those of the BreadthFirst class, which is why
+    we inherit that class.
     """
 
     def get_next_state(self):
