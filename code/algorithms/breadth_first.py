@@ -34,6 +34,7 @@ class BreadthFirst():
         """
         Runs the algorithm untill all possible states are visited.
         """
+
         while self.queue:
             
             # Get the next parent state from the grid
@@ -61,7 +62,7 @@ class BreadthFirst():
                         self.solution.path = self.get_path(child_grid, parent_grid, self.path_memory)
                         return self.solution
                     
-                    # Add child to the queue if child is uniqe
+                    # Add child to the queue if child is unique
                     if self.rushhour.grid_to_string(child_grid) not in self.archive:
                         self.solution.count_unique_states += 1
                         self.queue.append(self.rushhour.grid_to_string(child_grid))
