@@ -51,13 +51,16 @@ Doordat het per laag in de boomstructuur kijkt naar de mogelijke volgende staten
 #### Nadelen
 
 ### Het depth first algoritme - code/algorithms/depth_frist.py
-blablabla
+Ook hebben we het depth first algoritme gebruikt. Deze verschilt qua code niet zo veel met de breadth first algoritme, maar geeft wel een hele andere uitkomst wat interessant kan zijn. Het depth first algoritme wordt ook gestructureerd aan de hand van vertakkingen, maar hierbij wordt er eerst naar de uiterste vertakking gekeken en als daar een oplossing uitkomt is dat ook gelijk de oplossing die depth first geeft.
+Dit algoritme zal dus met de begin state beginnen en vanaf hier steeds 1 nieuwe state aanmaken en doorgaan op gelijk deze state tot de winning state is bereikt.
+
+#### Voordelen
+Dit algoritme probeert gelijk zo diep mogelijk te graven naar een oplossing zonder alle mogelijkheden eerste per laag te bekijken. 
 
 ### Het A* algoritme - code/algorithms/astar.py
-blablabla
+
 
 ### Het best first algoritme - code/algorithms/best_first.py
-blablabla
 
 
 
