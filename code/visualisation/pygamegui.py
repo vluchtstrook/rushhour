@@ -16,7 +16,7 @@ def visualize(solution, size):
 
     # set up screen
     screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
-    pygame.display.set_caption(f"Rushhour {blocksize} x {blocksize}")
+    pygame.display.set_caption(f"Rushhour {size} x {size}")
     screen.fill(WHITE)
 
     running = True
@@ -47,7 +47,7 @@ def draw_grid(screen, state, size, blocksize, car_colour):
 
             pygame.draw.rect(screen, colour, (y * blocksize, x * blocksize, blocksize, blocksize))
     
-        j += 6
+        j += size
 
 
 def assign_colours(state):
