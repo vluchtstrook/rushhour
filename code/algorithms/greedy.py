@@ -1,13 +1,13 @@
 import copy
 import math
+import random
 import heapq
 import queue
-from code.algorithms.randomise import random_algo, random_winning_state
 from code.classes import solution, vehicle
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
-class Astar():
+class Greedy():
     """
     This algorithm builds a queue of possible state of the game.
     Only unique states are in the queue (no repetitions of states)
@@ -43,6 +43,9 @@ class Astar():
         """
         Runs the algorithm untill all possible states are visited.
         """
+        # Beginning value for the costs
+        lowest_costs = 1000
+        
         while self.heap:
             
             # Get the next parent state priority queue
@@ -61,32 +64,59 @@ class Astar():
                 # Turn the parent state into a Grid class
                 parent_grid = Grid(self.initial_grid.size, parent_grid)
 
+                # Dictionary with the costs per child, the child_grid as key and costs as value
+                costs_childs = {}
+
                 # Create every possible child through every possible move
                 for move in self.rushhour.possible_moves(parent_grid.grid):
-                    child_grid = copy.deepcopy(parent_grid)
+                    childs_grid = copy.deepcopy(parent_grid)
                     self.solution.count_states += 1
 
                     # Make child
-                    child_grid.move_in_grid(move[0], move[1], move[2])
+                    childs_grid.move_in_grid(move[0], move[1], move[2])
                     
-                    # Check whether child is a winning state
-                    if child_grid.win():
-                        self.solution.path = self.get_path(child_grid, parent_grid, self.path_memory)
+                    # Check whether the child is a winning state
+                    if childs_grid.win():
+                        self.solution.path = self.get_path(childs_grid, parent_grid, self.path_memory)
                         return self.solution
+
+                    # Save the costs of each child
+                    child_costs = self.H1_costs(childs_grid) + parent_depth
+
+                    # Check if the previous child has lower costs and take the (first) lowest child
+                    if child_costs < lowest_costs:
+                        lowest_costs = child_costs
+                        child_grid = childs_grid
                     
-                    # Add child to the queue if its state has not been in the queue before
-                    if self.rushhour.grid_to_string(child_grid) not in self.archive:
+                print(child_grid)
 
-                        self.solution.count_unique_states += 1
-                        print(self.solution.count_unique_states)
-                        print(parent_depth)
+                    # Add to a dictionary the costs per child
+                    # costs_childs[child_grid] = child_costs
 
-                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + self.H2_costs(child_grid) + parent_depth + 1, parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
+                # Choice based on costs:
+                # Check which child has the lowest costs, choose random if more childs have the same costs 
+                # and push only that child to the queue
+                # child_grid = min(costs_childs, key=costs_childs.get)
+                # print(child_grid)
+            
+                # Choose a random child from the dictionary
+                # child_grid = random.choice(list(costs_childs.keys()))
 
-                        self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
+                # Add that child to the queue if its state has not been in the queue before
+                if self.rushhour.grid_to_string(child_grid) not in self.archive:
+                    print("komt hier")
+
+                    self.solution.count_unique_states += 1
+
+                    heapq.heappush(self.heap, (self.H1_costs(child_grid) + parent_depth + 1, parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
+
+                    self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
                 # Add the parent to the archive to rember its state has already been investigated
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
+
+                # Clean the dictionary for the next childs
+                costs_childs.clear()
 
 
     def get_path(self, child_grid, parent_grid, path_memory):
@@ -135,56 +165,6 @@ class Astar():
         obstacles = self.vehicles_in_the_way(child_grid)
 
         return len(obstacles[0]) + child_grid.size - obstacles[1] + 2
-
-
-    def H2_costs(self, child_grid):
-        """
-        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
-
-        """
-        obstacles = self.vehicles_in_the_way(child_grid)
-
-        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
-
-        score = 0
-
-        for obstacle in obstacles[0]:
-            vehicle_name = obstacle
-            obstacle_info = {}
-            score = 0
-
-            for i in range(child_grid.size):
-                if child_grid.grid[finish_row_index - 1][i] == vehicle_name:
-                    for j in range(child_grid.size):
-                        if child_grid.grid[j][i] != vehicle_name and child_grid.grid[j][i] != '_':
-                            score += 1
-            
-        return score
-
-    def H3_costs(self, child_grid):
-        """
-        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
-        """
-        obstacles = self.vehicles_in_the_way(child_grid)
-        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
-
-        first_obstacle = ''
-        index_first_obstacle = 0
-
-        for i in range(child_grid.size - obstacles[1] + 2):
-            if child_grid.grid[finish_row_index - 1][i + obstacles[1]] != '_':
-                first_obstacle = child_grid.grid[finish_row_index - 1][i + obstacles[1]]
-                index_first_obstacle = i
-                break
-
-        score = 0
-
-        if first_obstacle != '':
-            for i in range(child_grid.size):
-                if child_grid.grid[i][index_first_obstacle] != first_obstacle and child_grid.grid[i][index_first_obstacle] != '_':
-                            score += 1
-        return score  
-
 
 
 
