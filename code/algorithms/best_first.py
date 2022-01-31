@@ -14,7 +14,7 @@ class BestFirst():
     """
     This algorithm builds a priority queue of possible states of the game.
 
-    Priority is given based on heuristic 1 and 4.
+    Priority is given based on heuristic 1 and 4. (Does not take the path lenghth into consideration)
 
     Only unique states are in the queue (no repetitions of states).
     
@@ -22,7 +22,7 @@ class BestFirst():
     """
 
     def __init__(self, rushhour) -> None:
-        # Info from rushhour
+        # Data from rushhour
         self.rushhour = rushhour
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
@@ -43,7 +43,7 @@ class BestFirst():
                 
     def get_next_state(self):
         """
-        Method that gets the next state from the list of states.
+        Method that gets the next state from the priority queue.
         """
         return heapq.heappop(self.heap)
 
@@ -56,7 +56,9 @@ class BestFirst():
             # Get the next parent state priority queue
             parent = self.get_next_state()
 
+            # H1 + H4
             parent_costs = parent[0]
+
             parent_depth = parent[1]
             parent_grid = parent[2]
 
@@ -74,6 +76,9 @@ class BestFirst():
 
                     child_grid = copy.deepcopy(parent_grid)
                     self.solution.count_states += 1
+                    print(parent_depth)
+                    print(self.solution.count_states)
+                    print(self.solution.count_unique_states)
 
                     # Make child
                     child_grid.move_in_grid(move[0], move[1], move[2])
@@ -88,7 +93,11 @@ class BestFirst():
 
                         self.solution.count_unique_states += 1
 
-                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + self.H4_costs(child_grid, self.average_win_grid), parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
+                        heapq.heappush(self.heap, (
+                            self.H1_costs(child_grid) + self.H4_costs(child_grid, self.average_win_grid), 
+                            parent_depth + 1,
+                            self.rushhour.grid_to_string(child_grid))
+                            )
 
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
@@ -120,15 +129,17 @@ class BestFirst():
         """
         finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
 
+        # Extract the row of the red car from grid
         finish_row = child_grid.grid[finish_row_index - 1]
 
+        # Determine the coordinates of the red car in the grid
         X_index = 0
-
         for i in range(len(finish_row)):
             if finish_row[i] == 'X':
                 X_index = i
                 break
         
+        # Collect all vehicles between the red car and finish
         obstacles = set(finish_row[X_index + 2:])
         obstacles.discard('_')
 
@@ -137,7 +148,7 @@ class BestFirst():
 
     def H1_costs(self, child_grid):
         """
-        Returns the total costs of manhattan distance + a,mount of cars in the way to the exit.
+        Returns the total costs of manhattan distance + a, mount of cars in the way to the exit.
         """
         obstacles = self.vehicles_in_the_way(child_grid)
 
@@ -146,8 +157,8 @@ class BestFirst():
 
     def H2_costs(self, child_grid):
         """
+        THIS FUNCTION IS NOT USED, DID NOT GAVE GOOD RESULTS.
         Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
-
         """
         obstacles = self.vehicles_in_the_way(child_grid)
 
@@ -192,7 +203,11 @@ class BestFirst():
                             score += 1
         return score  
 
+
     def H4_costs(self, grid, average_win_grid):
+        """
+        Counts the amount of missmatches of a grid with the average winningg grid.
+        """
         score = 0
         for i in range(len(grid.grid)):
             for j in range(len(grid.grid)):

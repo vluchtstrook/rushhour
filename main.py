@@ -54,28 +54,32 @@ if __name__ == "__main__":
     # depth_first_class = DepthFirst(rushhour)
     # depth_first_solution = depth_first_class.run()
     # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
+
     # # GUI still works with a max of 13 vehicles
     # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
     # print(f"This was the Depth First algorithm {game_name[:-4]}.\n")
 
  # ------------------------------------- Run the A Star algorithm ------------------------------------
+    # start = time.time()
     # Astar_class = Astar(rushhour)
     # Astar_solution = Astar_class.run()
+    # end = time.time()
     # visualisation.visualisation(Astar_solution, rushhour.grid.size)
-    # print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
+    # print(f"This was the A Star algorithm {game_name[:-4]}.\n")  
+    # print(end - start) 
 
     # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
     # # GUI still works with a max of 13 vehicles
     # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
     # print("This was the Depth First algorithm.\n")
 
-# ------------------------------------- Run the random A Star algorithm ------------------------------------
+# ------------------------------------- Run the Best First algorithm ------------------------------------
     start = time.time()
-    random_Astar_class = BestFirst(rushhour)
-    random_Astar_solution = random_Astar_class.run()
+    best_first_class = BestFirst(rushhour)
+    best_first_solution = best_first_class.run()
     end = time.time()
-    visualisation.visualisation(random_Astar_solution, rushhour.grid.size)
-    print(f"This was the random A Star algorithm {game_name[:-4]}.\n")
+    visualisation.visualisation(best_first_solution, rushhour.grid.size)
+    print(f"This was the Best First algorithm {game_name[:-4]}.\n")
     print(end - start)   
 
     # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
@@ -84,10 +88,11 @@ if __name__ == "__main__":
     # print("This was the Depth First algorithm.\n")   
 
 # ------------------------------------- Run the Greedy algorithm ------------------------------------
-    Greedy_class = Greedy(rushhour)
-    Greedy_solution = Greedy_class.run()
+    # Greedy_class = Greedy(rushhour)
+    # Greedy_solution = Greedy_class.run()
     # visualisation.visualisation(Greedy_solution, rushhour.grid.size)
     # print(f"This was the Greedy algorithm {game_name[:-4]}.\n")   
+
     # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
     # # GUI still works with a max of 13 vehicles
     # pygamegui.visualize(depth_first_solution, rushhour.grid.size)

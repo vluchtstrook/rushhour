@@ -81,7 +81,7 @@ class Astar():
                         print(self.solution.count_unique_states)
                         print(parent_depth)
 
-                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + self.H2_costs(child_grid) + parent_depth + 1, parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
+                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + parent_depth + 1, parent_depth + 1 ,self.rushhour.grid_to_string(child_grid)))
 
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
