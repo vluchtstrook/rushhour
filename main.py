@@ -34,6 +34,7 @@ if __name__ == "__main__":
     # Welcome user
     print("Welcome to Rushhour.\n")
 
+
     # ----------------------------------------- Run the random algorithm ---------------------------------------
     # random_solution = randomise.random_algo(rushhour)
     # visualisation.visualisation(random_solution, rushhour.grid.size)
@@ -54,6 +55,7 @@ if __name__ == "__main__":
 
     pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
     print("This was the Breadth First algorithm.\n")  
+
 
     # ------------------------------------- Run the depth first algorithm ------------------------------------
     # depth_first_class = DepthFirst(rushhour)
