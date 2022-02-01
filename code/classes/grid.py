@@ -1,4 +1,16 @@
+#-----------------------------------------------------
+# grid.py
+#
+# Programmeertheorie
+# Vluchtstrook
+#
+# - This file is one of the parts of rushhour
+# - This file defines a class named Grid
+# - A new object of this class has specific attributes
+#-----------------------------------------------------
+
 import math
+
 
 class Grid:
     
@@ -7,7 +19,10 @@ class Grid:
         self.grid = new_grid
 
     def win(self):
-        # Calculate the y-coordinate of the finish
+        """
+        Calculate the y-coordinate of the finish and checks if the grid is a winning grid
+        """
+
         finish = self.size // 2 if self.size % 2 == 0 else math.ceil(self.size / 2)
         
         if self.grid[finish - 1][self.size - 1] == 'X':
@@ -19,6 +34,7 @@ class Grid:
         Checks if a certain movement is possible inside the grid.
         Changes the position of a certain vehicle in a specific direction in the grid.
         """
+        
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
                 if self.grid[i][j] == vehicle_name:

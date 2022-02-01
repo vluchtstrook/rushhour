@@ -34,9 +34,11 @@ if __name__ == "__main__":
     # Welcome user
     print("Welcome to Rushhour.\n")
 
+
     # ----------------------------------------- Run the random algorithm ---------------------------------------
     # random_solution = randomise.random_algo(rushhour)
     # visualisation.visualisation(random_solution, rushhour.grid.size)
+    # pygamegui.visualize(random_solution, rushhour.grid.size)
     # print(f"This was the Random algorithm on {game_name[:-4]}.\n") 
     # output_to_csv.output(rushhour.grid.size, random_solution.path, game_name, algorithm='Random')
 
@@ -59,9 +61,6 @@ if __name__ == "__main__":
     print(end - start)
     # # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
 
-    # # GUI still works with a max of 13 vehicles
-    # # pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
-    # print("This was the Breadth First algorithm.\n")  
 
     # ------------------------------------- Run the depth first algorithm ------------------------------------
     # depth_first_class = DepthFirst(rushhour)
