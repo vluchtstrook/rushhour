@@ -43,37 +43,36 @@ if __name__ == "__main__":
 
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    start = time.time()
-    breadth_first_class = BreadthFirst(rushhour)
-    breadth_first_solution = breadth_first_class.run()
-    end = time.time()
-    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
-    # print("This was the Breadth First algorithm.\n")
-    print(end - start)
-    # # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
+    # start = time.time()
+    # breadth_first_class = BreadthFirst(rushhour)
+    # breadth_first_solution = breadth_first_class.run()
+    # end = time.time()
+    # # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
+    # # print("This was the Breadth First algorithm.\n")
+    # print(end - start)
+    # # # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
 
-    pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
-    print("This was the Breadth First algorithm.\n")  
+    # pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
+    # print("This was the Breadth First algorithm.\n")  
 
     # ------------------------------------- Run the depth first algorithm ------------------------------------
     # depth_first_class = DepthFirst(rushhour)
     # depth_first_solution = depth_first_class.run()
-    # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
-
-    # # GUI still works with a max of 13 vehicles
-    # # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
+    # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
+    # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
     # print(f"This was the Depth First algorithm {game_name[:-4]}.\n")
-    # output_to_csv.output(rushhour.grid.size, depth_first_solution.path, game_name, algorithm='Depthfirst')
+    # # output_to_csv.output(rushhour.grid.size, depth_first_solution.path, game_name, algorithm='Depthfirst')
 
 
  # ------------------------------------- Run the A Star algorithm ------------------------------------
-    # start = time.time()
-    # Astar_class = Astar(rushhour)
-    # Astar_solution = Astar_class.run()
-    # end = time.time()
-    # visualisation.visualisation(Astar_solution, rushhour.grid.size)
-    # print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
-    # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
+    start = time.time()
+    Astar_class = Astar(rushhour)
+    Astar_solution = Astar_class.run()
+    end = time.time()
+    visualisation.visualisation(Astar_solution, rushhour.grid.size)
+    # pygamegui.visualize(Astar_solution, rushhour.grid.size)
+    print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
+    # # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
 
 
 # ------------------------------------- Run the random A Star algorithm ------------------------------------
@@ -94,6 +93,5 @@ if __name__ == "__main__":
     # print(f"This was the Greedy algorithm {game_name[:-4]}.\n")   
 
     # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
-    # # GUI still works with a max of 13 vehicles
     # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
     # print("This was the Depth First algorithm.\n")  
