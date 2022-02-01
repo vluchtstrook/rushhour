@@ -1,4 +1,18 @@
+#-----------------------------------------------------
+# rushhour.py
+#
+# Programmeertheorie
+# Vluchtstrook
+#
+# - This file is one of the parts of rushhour
+# - This file defines a class named Rushhour
+# - This file gets all the information about the vehicles and the grid from the loader file
+# - It has a method that derives all possible moves
+# - And it has methods to convert a grid into a string and vice versa 
+#-----------------------------------------------------
+
 import code.loader.loader as loader
+
 
 class RushHour:
     
@@ -15,6 +29,7 @@ class RushHour:
         """
         Method that derives all the possible moves given a current grid state.
         """
+
         # Iterable variable to store all the moves
         moves = []
         for i in range(self.grid.size):
@@ -44,6 +59,7 @@ class RushHour:
         """
         Converts a grid class to a string grid.
         """
+
         string_grid = ''
 
         for i in range(grid.size):
@@ -57,6 +73,7 @@ class RushHour:
         """
         Converts a string grid to a 2x2 list grid.
         """
+        
         # 2x2 list to respresent the grid
         list_grid = [['_' for i in range(self.grid.size)] for j in range(self.grid.size)]
 

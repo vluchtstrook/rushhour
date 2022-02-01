@@ -3,15 +3,16 @@ from code.classes import solution
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
-class BreadthFirst():
+class WinStateSpace():
     """
-    This algorithm builds a queue of possible state of the game.
+    This algorithm return the first 200.000 winning states and their corresponding path.
 
     Only unique states are in the queue (no repetitions of states).
     """
 
-    def __init__(self, rushhour) -> None:
+    def __init__(self, rushhour, amount) -> None:
         # Info from rushhour
+        self.amount = amount
         self.rushhour = rushhour
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
@@ -24,6 +25,8 @@ class BreadthFirst():
         # path_memory = {'string_child' : 'string_parent'}
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
+        self.count_win_states = 0
+        self.winning_states = []
                 
     def get_next_state(self):
         """
@@ -36,7 +39,7 @@ class BreadthFirst():
         Runs the algorithm untill all possible states are visited.
         """
 
-        while self.queue:
+        while self.queue and len(self.winning_states) <= self.amount:
             
             # Get the next parent state from the grid
             parent_grid = self.get_next_state()
@@ -59,9 +62,11 @@ class BreadthFirst():
                     child_grid.move_in_grid(move[0], move[1], move[2])
                     
                     # Check whether child is a winning state
-                    if child_grid.win():
+                    if child_grid.win() and self.rushhour.grid_to_string(child_grid) not in self.archive:
+                        self.count_win_states += 1
+                        print(self.count_win_states)
                         self.solution.path = self.get_path(child_grid, parent_grid, self.path_memory)
-                        return self.solution
+                        self.winning_states.append(len(self.solution.path))
 
                     
                     # Add child to the queue if child is unique
@@ -72,6 +77,8 @@ class BreadthFirst():
 
                 # Add parent to the archive
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
+        
+        return self.winning_states
 
 
     def get_path(self, child_grid, parent_grid, path_memory):
