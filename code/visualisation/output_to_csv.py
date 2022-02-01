@@ -1,26 +1,31 @@
 import pandas
 
 def output(gridsize, path, game_name, algorithm):
-    
-    first_state = path[0]
-    last_state = path[-1]
+    # use first state to obtain all carnames
+    carnames = set(path[0])
+    carnames.remove('_')
+    cars = []
+    moves = []
 
-    cars = set(first_state)
-    cars.remove('_')
-    difference_dict = {}
+    # loop through all states and compare adjacent states
+    for i in range(len(path) - 1):
+        for car in carnames:
+            if path[i + 1].index(car) - path[i].index(car) != 0:
+                # move for horizontal cars
+                move = path[i + 1].index(car) - path[i].index(car)
 
-    for car in cars:
-        # difference for horizontal cars
-        difference = last_state.index(car) - first_state.index(car)
+                # move for vertical cars 
+                if move >= gridsize or move <= -gridsize:
+                    move = move // gridsize
+                
+                cars.append(car)
+                moves.append(move)
 
-        # difference for vertical cars 
-        if difference >= gridsize or difference <= -gridsize:
-            difference = difference // gridsize
-        
-        difference_dict[car] = difference
-
-    series = pandas.Series(difference_dict, index=difference_dict.keys())
+    series = pandas.Series(moves, index=cars)
     df = pandas.DataFrame({'move': series})
     df.index.name = 'car'
-    df = df.sort_index()
-    df.to_csv(f'code/visualisation/outputdata/{algorithm}_{game_name}')
+
+    # outputname not compatible with check 50
+    # df.to_csv(f'code/visualisation/outputdata/{algorithm}_{game_name}')
+    # outputname compatible with check50
+    df.to_csv('code/visualisation/outputdata/output.csv')

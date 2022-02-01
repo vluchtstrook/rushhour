@@ -44,22 +44,22 @@ if __name__ == "__main__":
 
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    start = time.time()
-    breadth_first_class = BreadthFirst(rushhour)
-    breadth_first_solution = breadth_first_class.run()
+    # start = time.time()
+    # breadth_first_class = BreadthFirst(rushhour)
+    # breadth_first_solution = breadth_first_class.run()
 
-    # # print(f'Amount of unique winning states: {breadth_first_solution[0]}', end = '\n\n')
-    # # print()
-    # # print(f'Amount of states: {breadth_first_solution[1]}', end = '\n\n')
-    # # print()
-    # # print(f'Amount of unique states: {breadth_first_solution[2]}', end = '\n\n')
-    # # print()
+    # # # print(f'Amount of unique winning states: {breadth_first_solution[0]}', end = '\n\n')
+    # # # print()
+    # # # print(f'Amount of states: {breadth_first_solution[1]}', end = '\n\n')
+    # # # print()
+    # # # print(f'Amount of unique states: {breadth_first_solution[2]}', end = '\n\n')
+    # # # print()
 
-    end = time.time()
-    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
-    pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
-    print(f"This was the Breadth First algorithm on {game_name[:-4]}.\n")
-    print(end - start)
+    # end = time.time()
+    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
+    # pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
+    # print(f"This was the Breadth First algorithm on {game_name[:-4]}.\n")
+    # print(end - start)
     # # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
 
 
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     visualisation.visualisation(Astar_solution, rushhour.grid.size)
     # pygamegui.visualize(Astar_solution, rushhour.grid.size)
     print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
-    # # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
+    output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
 
 
 # ------------------------------------- Run the Best First algorithm ------------------------------------
