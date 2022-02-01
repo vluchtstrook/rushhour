@@ -92,14 +92,3 @@ if __name__ == "__main__":
     # print(f"This was the Best First algorithm {game_name[:-4]}.\n")
     # print(end - start)   
     # output_to_csv.output(rushhour.grid.size, best_first_solution.path, game_name, algorithm='Random_Astar')
-
-
-# ------------------------------------- Run the Greedy algorithm ------------------------------------
-    # Greedy_class = Greedy(rushhour)
-    # Greedy_solution = Greedy_class.run()
-    # visualisation.visualisation(Greedy_solution, rushhour.grid.size)
-    # print(f"This was the Greedy algorithm {game_name[:-4]}.\n")   
-
-    # # visualisation.visualisation(depth_first_solution, rushhour.grid.size)
-    # pygamegui.visualize(depth_first_solution, rushhour.grid.size)
-    # print("This was the Depth First algorithm.\n")  
