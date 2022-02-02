@@ -10,23 +10,23 @@ An instance of the Vehicle class is created in the loader file (loader.py).
 """
 
 
-class Vehicle():
+class Vehicle:
     
     def __init__(self, car, orientation, length):
         self.car = car
         self.orientation = orientation
         self.length = length
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.car
     
-    def orientation(self):
+    def orientation(self) -> str:
         """
         This method returns the orientation of the vehicle. This can be either horizontal or vertical.
         """
         return self.orientation
     
-    def length(self):
+    def length(self) -> int:
         """
         This method returns the length of the vehicle. This can be either 2 (car) or 3 (truck).
         """

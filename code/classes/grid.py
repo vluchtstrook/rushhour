@@ -19,7 +19,7 @@ class Grid:
         self.size = size
         self.grid = new_grid
 
-    def win(self):
+    def win(self) -> bool:
         """
         This method calculates the y-coordinate of the exit and checks if the grid is a winning state.
         """
@@ -31,7 +31,7 @@ class Grid:
         return False
     
 
-    def move_in_grid(self, vehicle_name, direction, vehicle_size):
+    def move_in_grid(self, vehicle_name: str, direction: str, vehicle_size: int) -> bool:
         """
         This method checks if a specific move is possible inside the grid. It changes the position of the vehicle
         in the grid in a specific direction if the move is possible.

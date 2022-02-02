@@ -10,6 +10,7 @@ An instance of the Rushhour class is created in the main file (main.py).
 """
 
 
+from code.classes.grid import Grid
 import code.loader.loader as loader
 
 
@@ -24,7 +25,7 @@ class RushHour:
         self.grid = loader.load_grid(filename) 
         
 
-    def possible_moves(self, grid):
+    def possible_moves(self, grid: Grid) -> list[str]:
         """
         This method derives all possible moves given a current grid state and stores it in a list. The list of moves
         is returned. 
@@ -55,7 +56,7 @@ class RushHour:
 
 
     @staticmethod
-    def grid_to_string(grid):
+    def grid_to_string(grid: Grid) -> str:
         """
         This method converts a Grid instance to a string. It returns the string.
         """
@@ -69,7 +70,7 @@ class RushHour:
         return string_grid
     
 
-    def string_to_grid(self, string_grid):
+    def string_to_grid(self, string_grid: str) -> list[list[str]]:
         """
         This method converts a string to a 2x2 list grid. It returns the list grid.
         """
