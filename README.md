@@ -16,9 +16,22 @@ Met behulp van algoritmes en heuristieken proberen we een oplossing te vinden vo
 Welk algoritme hiervoor het beste is hangt af van verschillende aspecten en zullen in het kopje over de algoritmes toegelicht worden. 
 
 ## Vooraf
-Dit programma is geschreven in Python en bevat een aantal packages die allereerst geinstalleerd moeten worden op de computer om de code te kunnen runnen. Welke packages er nodig zijn staan beschreven in **requirements.txt**.
+Dit programma is geschreven in Python en bevat een aantal packages die allereerst geinstalleerd moeten worden op de computer om de code te kunnen runnen. Welke packages er nodig zijn staan beschreven in **requirements.txt** en zijn als volgt te installeren:
 
-Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een csv file gegenereerd waarbij de verplaatsing van de voertuigen ten opzichte van het beginbord staan weergegeven.  
+```
+pip3 install name_of_package
+```
+
+Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. 
+
+Voor het runnen van een specifieke puzzel moet je in de terminal aangeven de naam van de puzzel die je wilt runnen, dit doe je als volgt:
+
+```
+python3 main.py Rushhour6x6_2.csv
+```
+Wanneer je de naam van het csv bestand weglaat zal het programma automatisch de eerste puzzel pakken. 
+
+In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een csv file gegenereerd waarbij de verplaatsing van de voertuigen ten opzichte van het beginbord staan weergegeven.  
 
 ## De algoritmes
 
@@ -53,4 +66,4 @@ Als laatste het best first algoritme die ook op de A* lijkt, maar met net een an
 Voor die berekening wordt er een X aatal keer het random algoritme gedraaid met een winning state. Van deze X keren wordt het gemiddelde winning state bord gecreeerd (welke plek welke auto het meeste voorkwam). Voor de afwijking van een bepaalde state ten opzichte van het gemiddelde winning state worden kosten gerekend. 
 Deze is erg snel, maar geeft geen garantie op het vinden van het beste antwoord, doordat het geen rekening houdt met de lengte van het pad en dus een overschatting kan maken. 
 
-
+## De resultaten

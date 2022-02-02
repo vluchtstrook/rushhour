@@ -4,10 +4,11 @@ rushhour.py
 Course: programmeertheorie
 Team: vluchtstrook
 
-- This file contains a class named Rushhour. It defines methods that (1) derive all possible moves for 
-- a given state, (2) convert a Grid instance to a string and (3) convert a string to a 2x2 list.
-- An instance of the Rushhour class is created in the main file (main.py).
+This file contains a class named Rushhour. It defines three methods that (1) derives all possible moves for 
+a given state, (2) converts a Grid instance to a string and (3) converts a string to a 2x2 list.
+An instance of the Rushhour class is created in the main file (main.py).
 """
+
 
 import code.loader.loader as loader
 
