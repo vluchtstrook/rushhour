@@ -1,5 +1,5 @@
 """
-main.py
+astar.py
 
 Course: programmeertheorie
 Team: vluchtstrook
@@ -29,7 +29,7 @@ class Astar():
     """
     def __init__(self, rushhour: RushHour) -> None:
 
-        # Import informatin from rushhour.
+        # Import data from rushhour.
         self.rushhour = rushhour
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
@@ -59,7 +59,7 @@ class Astar():
         """
         while self.heap:
             
-            # Get the next parent state priority queue.
+            # Get the next parent state from the priority queue.
             parent = self.get_next_state()
 
             parent_depth = parent[1]
@@ -71,7 +71,7 @@ class Astar():
                 # Turn the parent state from string-type into 2x2 list-type.
                 parent_grid = self.rushhour.string_to_grid(parent_grid)
 
-                # Create an instance of Grid class.
+                # Create an instance of the Grid class.
                 parent_grid = Grid(self.initial_grid.size, parent_grid)
 
                 # Create every possible child through every possible move.
