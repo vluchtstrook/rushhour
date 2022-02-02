@@ -1,16 +1,19 @@
 import copy
-from code.classes import solution
+from typing import Dict, List
 from code.classes.grid import Grid
+from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
 
-class WinStateSpace():
+class GenerateSolutions:
     """
-    This algorithm return the first 200.000 winning states and their corresponding path.
+    This algorithm return the first X amount of winning states and their corresponding path.
+
+    This is done by use of a Breadth First method.
 
     Only unique states are in the queue (no repetitions of states).
     """
 
-    def __init__(self, rushhour, amount) -> None:
+    def __init__(self, rushhour: RushHour, amount: int) -> None:
         # Info from rushhour
         self.amount = amount
         self.rushhour = rushhour
@@ -21,20 +24,18 @@ class WinStateSpace():
         # Algorithm specific variables
         self.queue = [self.rushhour.grid_to_string(self.initial_grid)]
         self.archive = set()
-
-        # path_memory = {'string_child' : 'string_parent'}
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
         self.count_win_states = 0
         self.winning_states = []
                 
-    def get_next_state(self):
+    def get_next_state(self) -> str:
         """
         Method that gets the next state from the list of states.
         """
         return self.queue.pop(0)
 
-    def run(self):
+    def run(self) -> List[int]:
         """
         Runs the algorithm untill all possible states are visited.
         """
@@ -81,7 +82,7 @@ class WinStateSpace():
         return self.winning_states
 
 
-    def get_path(self, child_grid, parent_grid, path_memory):
+    def get_path(self, child_grid: Grid, parent_grid: Grid, path_memory: Dict[str, str]) -> List[str]:
         """
         Returns the path that led to the solution state.
         """
@@ -98,4 +99,3 @@ class WinStateSpace():
             parent_grid = path_memory[parent_grid]
         
         return path
-

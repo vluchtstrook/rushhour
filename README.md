@@ -1,6 +1,3 @@
-De aanpak van de verschillende algoritmen is duidelijk beschreven in de README.
-Het is na lezen van de README duidelijk hoe de resultaten te reproduceren zijn, via een interface (command line), argumenten die meegegeven kunnen worden voor de verschillende functionaliteiten/algoritmen, of bijvoorbeeld een duidelijke uitleg welke file te runnen om welk resultaat te krijgen.
-
 # Rush Hour
 ##### Anisha Sloeserwij, Julius Kempen en Tjarda Leppers
 
@@ -22,7 +19,7 @@ Dit programma is geschreven in Python en bevat een aantal packages die allereers
 pip3 install -r requirements.txt
 ```
 
-Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. 
+Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. Welk algoritme je kunt runnen staan onder het kopje 'De algoritmes' uitgelegd.  
 
 Voor het runnen van een specifieke puzzel moet je in de terminal aangeven de naam van de puzzel die je wilt runnen, dit doe je als volgt:
 
@@ -31,9 +28,14 @@ python3 main.py Rushhour6x6_2.csv
 ```
 Wanneer je de naam van het csv bestand weglaat zal het programma automatisch de eerste puzzel pakken. 
 
-In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een csv file gegenereerd waarbij de verplaatsing van de voertuigen ten opzichte van het beginbord staan weergegeven.  
+## Output
+In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een tijd weergegeven hoelang het algoritme erover heeft gedaan om tot deze oplossing te komen.
+
+Daarnaast is het ook nog mogelijk om een visualisatie te maken van het bord waarbij de verplaatsingen te zien zijn om de rode auto naar de uitganspositie te brengen. Hiervoor moet je de regel die begint met _gamepygui.visualize_ uit de comments halen. 
+Als laatste kun je de verplaatsing van de voertuigen in een csv bestand resulteren, hiervoor moet je de regel die begint met _output_to_csv.output_ uit de comments halen. 
 
 ## De algoritmes
+"Naam_van_het_algoritme" - "locatie_in_de_repository"
 
 ### Het random algoritme - code/algorithms/randomise.py
 Als eerste hebben we een random algoritme geimplementeerd die fungeert als baseline voor de oplossing. 
@@ -66,4 +68,11 @@ Als laatste het best first algoritme die ook op de A* lijkt, maar met net een an
 Voor die berekening wordt er een X aatal keer het random algoritme gedraaid met een winning state. Van deze X keren wordt het gemiddelde winning state bord gecreeerd (welke plek welke auto het meeste voorkwam). Voor de afwijking van een bepaalde state ten opzichte van het gemiddelde winning state worden kosten gerekend. 
 Deze is erg snel, maar geeft geen garantie op het vinden van het beste antwoord, doordat het geen rekening houdt met de lengte van het pad en dus een overschatting kan maken. 
 
-## De resultaten
+## Het experiment
+Om het experiment uit te kunnen voeren moet in de terminal de volgende command line ingevoerd worden. 
+```
+python3 experiment_1.py
+```
+Daarnaast kan je in het bestand **experiment_1.py** de regels 27 t/m 36 uit de comments halen om een csv bestand te genereren waarbij je een lijst te zien krijgt met daarin de path lengte van een aantal winnende oplossingen. Dit aantal is standaard ingesteld op 400000. 
+
+Als de code volledig is gedraaid wordt er een output in de terminal gegeven. Hier wordt vermeld voor hoeveel winnende staten er de beste oplossing is gevonden en hoeveel het gemiddeld voorkomende winnende pad met het best first algoritme in percentage is ten opzichte van de beste antwoorden. 
