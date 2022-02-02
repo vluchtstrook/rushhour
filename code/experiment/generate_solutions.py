@@ -1,11 +1,10 @@
 import copy
-from code.classes import solution
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
-class WinStateSpace():
+class GenerateSolutions():
     """
-    This algorithm return the first 200.000 winning states and their corresponding path.
+    This algorithm return the first X amount of winning states and their corresponding path.
 
     Only unique states are in the queue (no repetitions of states).
     """
