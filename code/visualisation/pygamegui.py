@@ -1,5 +1,8 @@
+from tkinter.messagebox import NO
 import pygame
 from colour import Color
+
+from code.classes.solution import Solution
 
 # constants
 SCREEN_SIZE = 600
@@ -8,7 +11,7 @@ SCREEN_SIZE = 600
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 
-def visualize(solution, size):
+def visualize(solution: Solution, size: int) -> None:
     blocksize = int(round((SCREEN_SIZE) / size))
     states = solution.path
     

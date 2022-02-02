@@ -1,5 +1,8 @@
 
-def visualisation(solution, grid_size):
+from code.classes.solution import Solution
+
+
+def visualisation(solution: Solution, grid_size: int) -> None:
 
     # Go trough every state/move in the archive
     # for i in range(len(solution.path)):

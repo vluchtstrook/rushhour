@@ -1,8 +1,9 @@
+from typing import Dict, List
 import pandas
 from code.classes.vehicle import Vehicle
 from code.classes.grid import Grid
 
-def load_vehicles(filename):
+def load_vehicles(filename: str) -> tuple[Dict[str, Vehicle], List[str]]:
     """
     Read all the grid data from the csv file into a dataframe.
     Load vehicle data from dataframe into Vehicle classes.
@@ -27,7 +28,7 @@ def load_vehicles(filename):
 
     return vehicles, vehicle_names
 
-def load_grid(filename):
+def load_grid(filename: str) -> Grid:
     """
     Read all the grid data from the csv file into a dataframe.
     Creates an (empty) gridarray of _ and changes the empty places for cars from the dataframe.

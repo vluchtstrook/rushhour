@@ -1,6 +1,7 @@
+from typing import List
 import pandas
 
-def output(gridsize, path, game_name, algorithm):
+def output(gridsize: int, path: List[str], game_name: str, algorithm: str) -> None:
     # use first state to obtain all carnames
     carnames = set(path[0])
     carnames.remove('_')
