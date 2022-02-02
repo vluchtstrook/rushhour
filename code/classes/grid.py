@@ -1,13 +1,14 @@
-#-----------------------------------------------------
-# grid.py
-#
-# Programmeertheorie
-# Vluchtstrook
-#
-# - This file is one of the parts of rushhour
-# - This file defines a class named Grid
-# - A new object of this class has specific attributes
-#-----------------------------------------------------
+"""
+grid.py
+
+Course: programmeertheorie
+Team: vluchtstrook
+
+This file contains a class named Grid. It defines two methods that (1) calculates the 'exit' of the grid and checks if 
+the red car (or car 'X') of the grid is in the exit spot and (2) checks if a specific move is legal.
+An instance of the Rushhour class is created in the loader file (loader.py).
+"""
+
 
 import math
 
@@ -20,7 +21,7 @@ class Grid:
 
     def win(self):
         """
-        Calculate the y-coordinate of the finish and checks if the grid is a winning grid
+        This method calculates the y-coordinate of the exit and checks if the grid is a winning state.
         """
 
         finish = self.size // 2 if self.size % 2 == 0 else math.ceil(self.size / 2)
@@ -29,10 +30,11 @@ class Grid:
             return True
         return False
     
+    
     def move_in_grid(self, vehicle_name, direction, vehicle_size):
         """
-        Checks if a certain movement is possible inside the grid.
-        Changes the position of a certain vehicle in a specific direction in the grid.
+        This method checks if a specific move is possible inside the grid. It changes the position of the vehicle
+        in the grid in a specific direction if the move is possible.
         """
         
         for i in range(len(self.grid)):
