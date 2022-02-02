@@ -1,12 +1,13 @@
 from statistics import mode
+from typing import Dict
 from code.algorithms.randomise import random_winning_state
 import copy
 import math
 import heapq
-import queue
 from code.algorithms.randomise import random_algo, random_winning_state
 from code.classes import solution, vehicle
 from code.classes.grid import Grid
+from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
 
 
@@ -21,7 +22,7 @@ class BestFirst():
     Stops when a winning state is found, or the queue is empty.
     """
 
-    def __init__(self, rushhour) -> None:
+    def __init__(self, rushhour: RushHour) -> None:
         # Data from rushhour
         self.rushhour = rushhour
         self.initial_grid = rushhour.grid
@@ -29,6 +30,7 @@ class BestFirst():
         self.vehicles = rushhour.vehicles
         self.vehicles_names = rushhour.vehicle_names
 
+        # The amount of random winning grids to generate
         self.repetition = 10
         self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour, self.repetition)
 
@@ -42,13 +44,13 @@ class BestFirst():
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
                 
-    def get_next_state(self):
+    def get_next_state(self) -> set[int, int, str]:
         """
         Method that gets the next state from the priority queue.
         """
         return heapq.heappop(self.heap)
 
-    def run(self):
+    def run(self) -> Solution:
         """
         Runs the algorithm untill all possible states are visited.
         """
@@ -74,12 +76,8 @@ class BestFirst():
 
                 # Create every possible child through every possible move
                 for move in self.rushhour.possible_moves(parent_grid.grid):
-
                     child_grid = copy.deepcopy(parent_grid)
                     self.solution.count_states += 1
-                    print(parent_depth)
-                    print(self.solution.count_states)
-                    print(self.solution.count_unique_states)
 
                     # Make child
                     child_grid.move_in_grid(move[0], move[1], move[2])
@@ -106,7 +104,7 @@ class BestFirst():
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
 
 
-    def get_path(self, child_grid, parent_grid, path_memory):
+    def get_path(self, child_grid: Grid, parent_grid: Grid, path_memory: Dict[str, str]) -> list[str]:
         """
         Returns the path that led to the solution state.
         """
@@ -124,7 +122,7 @@ class BestFirst():
         
         return path
 
-    def vehicles_in_the_way(self, child_grid):
+    def vehicles_in_the_way(self, child_grid: Grid) -> set[set[str], int]:
         """
         Counts the amount of cars that are between the red car and the exist of the bord.
         """
@@ -147,7 +145,7 @@ class BestFirst():
         return (obstacles, X_index)
 
 
-    def H1_costs(self, child_grid):
+    def H1_costs(self, child_grid: Grid) -> int:
         """
         Returns the total costs of manhattan distance + a, mount of cars in the way to the exit.
         """
@@ -156,32 +154,7 @@ class BestFirst():
         return len(obstacles[0]) + child_grid.size - obstacles[1] + 2
 
 
-    def H2_costs(self, child_grid):
-        """
-        THIS FUNCTION IS NOT USED, DID NOT GAVE GOOD RESULTS.
-        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
-        """
-        obstacles = self.vehicles_in_the_way(child_grid)
-
-        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
-
-        score = 0
-
-        for obstacle in obstacles[0]:
-            vehicle_name = obstacle
-            obstacle_info = {}
-            score = 0
-
-            for i in range(child_grid.size):
-                if child_grid.grid[finish_row_index - 1][i] == vehicle_name:
-                    for j in range(child_grid.size):
-                        if child_grid.grid[j][i] != vehicle_name and child_grid.grid[j][i] != '_':
-                            score += 1
-            
-        return score
-
-
-    def H4_costs(self, grid, average_win_grid):
+    def H4_costs(self, grid: Grid, average_win_grid: list[list[str]]) -> int:
         """
         Counts the amount of missmatches of a grid with the average winningg grid.
         """
@@ -193,9 +166,10 @@ class BestFirst():
         return score
 
 
-    def H5_costs(self, grid, average_win_grid):
+    def H5_costs(self, grid: Grid, average_win_grid: list[list[str]]) -> int:
         """
-        Calculate the minimum amount of steps each car has to move to reach an end position
+        Calculates the minimum amount of steps each car has to move to reach the preferred end 
+        position as determined by the average_win_grid
         """
         score = 0
         win_grid_coordinates = {}
@@ -217,7 +191,7 @@ class BestFirst():
         return score
        
         
-    def prefered_position(self, grid, rushhour, repetition):
+    def prefered_position(self, grid: Grid, rushhour: RushHour, repetition: int) -> list[list[str]]:
         random_winning_states = []
         i = 0
 
@@ -240,7 +214,7 @@ class BestFirst():
         
         return average_win_grid
 
-    def most_common(self, lst):
+    def most_common(self, lst: list[str]) -> int:
         return max(set(lst), key=lst.count)
 
 
