@@ -91,18 +91,18 @@ if __name__ == "__main__":
 
 
  # ------------------------------------- Run the A Star algorithm ------------------------------------
-    # start = time.time()
-    # Astar_class = Astar(rushhour)
-    # Astar_solution = Astar_class.run()
-    # end = time.time()
+    start = time.time()
+    Astar_class = Astar(rushhour)
+    Astar_solution = Astar_class.run()
+    end = time.time()
 
-    # # Visualisation in terminal or through pygame.
-    # visualisation.visualisation(Astar_solution, rushhour.grid.size)
-    # # pygamegui.visualize(Astar_solution, rushhour.grid.size)
+    # Visualisation in terminal or through pygame.
+    visualisation.visualisation(Astar_solution, rushhour.grid.size)
+    # pygamegui.visualize(Astar_solution, rushhour.grid.size)
 
-    # print(f"This was the A Star algorithm {game_name[:-4]}.\n")  
-    # print(end - start) 
-    # # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
+    print(f"This was the A Star algorithm {game_name[:-4]}.\n")  
+    print(end - start) 
+    # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
 
 
 # ------------------------------------- Run the Best First algorithm ------------------------------------

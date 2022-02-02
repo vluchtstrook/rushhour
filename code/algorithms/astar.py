@@ -1,7 +1,7 @@
 import copy
 import math
 import heapq
-from typing import Dict
+from typing import Dict, Set
 from code.classes.grid import Grid
 from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
@@ -31,7 +31,7 @@ class Astar():
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
                 
-    def get_next_state(self) -> set[int, int, str]:
+    def get_next_state(self) -> Set[int, int, str]:
         """
         Method that gets the next state from the list of states.
         """

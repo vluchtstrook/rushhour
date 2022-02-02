@@ -7,6 +7,7 @@ import random
 from code.classes.solution import Solution 
 import math
 
+
 def random_algo(rushhour: RushHour) -> Solution:
     """
     Contains the process of randomly moving around vehicles in the grid untill a solution state is found.
