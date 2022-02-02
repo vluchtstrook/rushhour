@@ -130,6 +130,7 @@ class BestFirst():
         
         return path
 
+
     def vehicles_in_the_way(self, child_grid: Grid) -> set[set[str], int]:
         """
         This method counts the amount of cars that are blocking the red car (car 'X') from the exit.
