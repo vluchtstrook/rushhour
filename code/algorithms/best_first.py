@@ -12,14 +12,12 @@ This algorithm is called from the main file (main.py).
 """
 
 
-from statistics import mode
 from typing import Dict
 from code.algorithms.randomise import random_winning_state
 import copy
 import math
 import heapq
-from code.algorithms.randomise import random_algo, random_winning_state
-from code.classes import solution, vehicle
+from code.algorithms.randomise import random_winning_state
 from code.classes.grid import Grid
 from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
