@@ -1,13 +1,14 @@
 import copy
 from typing import Dict, List
-from code.classes import solution
 from code.classes.grid import Grid
 from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
 
-class WinStateSpace:
+class GenerateSolutions:
     """
-    This algorithm return the first 200.000 winning states and their corresponding path.
+    This algorithm return the first X amount of winning states and their corresponding path.
+
+    This is done by use of a Breadth First method.
 
     Only unique states are in the queue (no repetitions of states).
     """
@@ -98,4 +99,3 @@ class WinStateSpace:
             parent_grid = path_memory[parent_grid]
         
         return path
-
