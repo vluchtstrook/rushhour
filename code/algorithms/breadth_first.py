@@ -1,5 +1,5 @@
 import copy
-from code.classes import solution
+from typing import Dict
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
@@ -25,13 +25,13 @@ class BreadthFirst():
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
                 
-    def get_next_state(self):
+    def get_next_state(self) -> str:
         """
         Method that gets the next state from the list of states.
         """
         return self.queue.pop(0)
 
-    def run(self):
+    def run(self) -> Solution:
         """
         Runs the algorithm untill all possible states are visited.
         """
@@ -74,7 +74,7 @@ class BreadthFirst():
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
 
 
-    def get_path(self, child_grid, parent_grid, path_memory):
+    def get_path(self, child_grid: Grid, parent_grid: Grid, path_memory: Dict[str, str]) -> list[str]:
         """
         Returns the path that led to the solution state.
         """
