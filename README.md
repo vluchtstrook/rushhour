@@ -78,4 +78,4 @@ python3 experiment_1.py
 ```
 Daarnaast kan je in het bestand **experiment_1.py** de regels 27 t/m 36 uit de comments halen om een csv bestand te genereren waarbij je een lijst te zien krijgt met daarin de path lengte van een aantal winnende oplossingen. Dit aantal is standaard ingesteld op 400000. 
 
-Als de code volledig is gedraaid wordt er een output in de terminal gegeven. Hier wordt vermeld voor hoeveel winnende staten er de beste oplossing is gevonden en hoeveel het gemiddeld voorkomende winnende pad met het best first algoritme in percentage is ten opzichte van de beste antwoorden. 
+Als de code volledig is gedraaid wordt er een output in de terminal gegeven. Hier wordt vermeld voor hoeveel winnende staten er de beste oplossing is gevonden en hoeveel het gemiddeld voorkomende winnende pad met het best first algoritme in percentage is ten opzichte van de beste antwoorden. TEST

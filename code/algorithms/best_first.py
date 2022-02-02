@@ -156,7 +156,7 @@ class BestFirst():
 
     def H4_costs(self, grid: Grid, average_win_grid: list[list[str]]) -> int:
         """
-        Counts the amount of missmatches of a grid with the average winningg grid.
+        Counts the amount of missmatches of a grid with the average winning grid.
         """
         score = 0
         for i in range(len(grid.grid)):
@@ -169,19 +169,25 @@ class BestFirst():
     def H5_costs(self, grid: Grid, average_win_grid: list[list[str]]) -> int:
         """
         Calculates the minimum amount of steps each car has to move to reach the preferred end 
-        position as determined by the average_win_grid
+        position as determined by the average_win_grid.
         """
         score = 0
+
+        # Store the coordinates of the vehicles, of the win grid an current grid
         win_grid_coordinates = {}
         grid_coordinates = {}
+
         for vehicle in self.vehicles_names:
             for i in range(len(average_win_grid)):
                 for j in range(len(average_win_grid)):
+
+                    # Store the coordinate of the first instance of the vehicles
                     if grid.grid[i][j] == vehicle and vehicle not in grid_coordinates:
                         grid_coordinates[vehicle] = (i,j)
                     if average_win_grid[i][j] == vehicle and vehicle not in win_grid_coordinates:
                         win_grid_coordinates[vehicle] = (i,j)
         
+        # Calculate for each vehicle the distance between the current position and prefered end position
         for vehicle in self.vehicles_names:
             if self.vehicles[vehicle].orientation == 'H' and vehicle in win_grid_coordinates:
                 score += abs(win_grid_coordinates[vehicle][0] - grid_coordinates[vehicle][0])
@@ -216,5 +222,3 @@ class BestFirst():
 
     def most_common(self, lst: list[str]) -> int:
         return max(set(lst), key=lst.count)
-
-

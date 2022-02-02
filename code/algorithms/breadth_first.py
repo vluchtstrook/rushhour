@@ -91,4 +91,3 @@ class BreadthFirst():
             parent_grid = path_memory[parent_grid]
         
         return path
-
