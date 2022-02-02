@@ -27,6 +27,7 @@ class BestFirst():
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
         self.vehicles = rushhour.vehicles
+        self.vehicles_names = rushhour.vehicle_names
         self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour)
 
         # Create the priority queue
@@ -214,6 +215,29 @@ class BestFirst():
                 if grid.grid[i][j] != average_win_grid[i][j]:
                     score += 1
         return score
+    
+    def H5_costs(self, grid, average_win_grid):
+        """
+        Calculate the minimum amount of steps each car has to move to reach an end position
+        """
+        score = 0
+        win_grid_coordinates = {}
+        grid_coordinates = {}
+        for vehicle in self.vehicles_names:
+            for i in range(len(average_win_grid)):
+                for j in range(len(average_win_grid)):
+                    if grid.grid[i][j] == vehicle and vehicle not in grid_coordinates:
+                        grid_coordinates[vehicle] = (i,j)
+                    if average_win_grid[i][j] == vehicle and vehicle not in win_grid_coordinates:
+                        win_grid_coordinates[vehicle] = (i,j)
+        
+        for vehicle in self.vehicles_names:
+            if self.vehicles[vehicle].orientation == 'H' and vehicle in win_grid_coordinates:
+                score += abs(win_grid_coordinates[vehicle][0] - grid_coordinates[vehicle][0])
+            if self.vehicles[vehicle].orientation == 'V' and vehicle in win_grid_coordinates:
+                score += abs(win_grid_coordinates[vehicle][1] - grid_coordinates[vehicle][1])
+
+        return score
         
     def prefered_position(self, grid, rushhour):
         random_winning_states = []
@@ -234,11 +258,11 @@ class BestFirst():
 
         for i in range(len(average_win_grid)):
             for j in range(len(average_win_grid[i])):
-                average_win_grid[i][j] = most_common(average_win_grid[i][j])
+                average_win_grid[i][j] = self.most_common(average_win_grid[i][j])
         
         return average_win_grid
 
-def most_common(lst):
-    return max(set(lst), key=lst.count)
+    def most_common(self, lst):
+        return max(set(lst), key=lst.count)
 
 

@@ -7,6 +7,7 @@ from code.classes import solution, vehicle
 from code.classes.grid import Grid
 from code.classes.solution import Solution
 
+
 class Astar():
     """
     This algorithm builds a queue of possible state of the game.
@@ -20,6 +21,8 @@ class Astar():
         self.initial_grid = rushhour.grid
         self.size = rushhour.grid.size
         self.vehicles = rushhour.vehicles
+
+        # self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour)
 
         # Create the priority queue
         self.heap = []
@@ -186,6 +189,53 @@ class Astar():
         return score  
 
 
+    def H5_costs(self, grid, average_win_grid):
+        """
+        Calculate the minimum amount of steps each car has to move to reach an end position
+        """
+        score = 0
+        win_grid_coordinates = {}
+        grid_coordinates = {}
+        for vehicle in self.vehicles_names:
+            for i in range(len(average_win_grid)):
+                for j in range(len(average_win_grid)):
+                    if grid.grid[i][j] == vehicle and vehicle not in grid_coordinates:
+                        grid_coordinates[vehicle] = (i,j)
+                    if average_win_grid[i][j] == vehicle and vehicle not in win_grid_coordinates:
+                        win_grid_coordinates[vehicle] = (i,j)
+        
+        for vehicle in self.vehicles_names:
+            if self.vehicles[vehicle].orientation == 'H' and vehicle in win_grid_coordinates:
+                score += abs(win_grid_coordinates[vehicle][0] - grid_coordinates[vehicle][0])
+            if self.vehicles[vehicle].orientation == 'V' and vehicle in win_grid_coordinates:
+                score += abs(win_grid_coordinates[vehicle][1] - grid_coordinates[vehicle][1])
 
+        return score
 
+    def prefered_position(self, grid, rushhour):
+        random_winning_states = []
+        i = 0
+
+        while i < 10:
+            random_win = random_winning_state(grid, rushhour)
+            random_winning_states.append(random_win)
+            i += 1
+        
+        average_win_grid = [[[] for _ in range(rushhour.grid.size)] for _ in range(rushhour.grid.size)]
+        
+        for i in range(len(random_winning_states)):
+
+            for j in range(len(random_winning_states[i])):
+                for k in range(len(random_winning_states[i][j])):
+                    average_win_grid[j][k].append(random_winning_states[i][j][k])
+
+        for i in range(len(average_win_grid)):
+            for j in range(len(average_win_grid[i])):
+                print(average_win_grid[i][j])
+                average_win_grid[i][j] = self.most_common(average_win_grid[i][j])
+        
+        return average_win_grid
+
+    def most_common(self,lst):
+        return max(set(lst), key=lst.count)
 
