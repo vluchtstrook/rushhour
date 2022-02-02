@@ -66,4 +66,11 @@ Als laatste het best first algoritme die ook op de A* lijkt, maar met net een an
 Voor die berekening wordt er een X aatal keer het random algoritme gedraaid met een winning state. Van deze X keren wordt het gemiddelde winning state bord gecreeerd (welke plek welke auto het meeste voorkwam). Voor de afwijking van een bepaalde state ten opzichte van het gemiddelde winning state worden kosten gerekend. 
 Deze is erg snel, maar geeft geen garantie op het vinden van het beste antwoord, doordat het geen rekening houdt met de lengte van het pad en dus een overschatting kan maken. 
 
-## De resultaten
+## Het experiment
+Om het experiment uit te kunnen voeren moet in de terminal de volgende command line ingevoerd worden. 
+```
+python3 experiment_1.py
+```
+Daarnaast kan je in het bestand **experiment_1.py** de regels 27 t/m 36 uit de comments halen om een csv bestand te genereren waarbij je een lijst te zien krijgt met daarin de path lengte van een aantal winnende oplossingen. Dit aantal is standaard ingesteld op 400000. 
+
+Als de code volledig is gedraaid wordt er een output in de terminal gegeven. Hier wordt vermeld voor hoeveel winnende staten er de beste oplossing is gevonden en hoeveel het gemiddeld voorkomende winnende pad met het best first algoritme in percentage is ten opzichte van de beste antwoorden. 
