@@ -7,9 +7,3 @@ import colour
 To install one of these Python packages you need to type in your terminal the following sentence (for example the pandas package):
 
 pip3 install pandas
-
-
-import copy (in python standard library)
-import math (in python standard library)
-import heapq (in python standard library)
-import random (in python standard library)
