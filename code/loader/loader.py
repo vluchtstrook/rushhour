@@ -14,7 +14,7 @@ def load_vehicles(filename):
     # Dictionary to store all vehicles
     vehicles = {}
 
-    # Store all vehicle keys
+    # Store all vehicle names
     vehicle_names = []
 
     for index in grid_data.index: 
@@ -22,7 +22,7 @@ def load_vehicles(filename):
         # Create Vehicle object and add it (by name) to the dictionary
         vehicles[grid_data['car'][index]] = Vehicle(grid_data['car'][index], grid_data['orientation'][index], grid_data['length'][index])
         
-        # Store all vehicle keys
+        # Store all vehicle names
         vehicle_names.append(grid_data['car'][index])
 
     return vehicles, vehicle_names
