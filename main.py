@@ -61,18 +61,18 @@ if __name__ == "__main__":
 
 
     # ------------------------------------- Run the breadth first algorithm ------------------------------------
-    # start = time.time()
-    # breadth_first_class = BreadthFirst(rushhour)
-    # breadth_first_solution = breadth_first_class.run()
-    # end = time.time()
+    start = time.time()
+    breadth_first_class = BreadthFirst(rushhour)
+    breadth_first_solution = breadth_first_class.run()
+    end = time.time()
 
-    # # Visualisation in terminal or through pygame.
-    # visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
-    # # pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
+    # Visualisation in terminal or through pygame.
+    visualisation.visualisation(breadth_first_solution, rushhour.grid.size)
+    # pygamegui.visualize(breadth_first_solution, rushhour.grid.size)
 
-    # print(f"This was the Breadth First algorithm on {game_name[:-4]}.\n")
-    # print(end - start)
-    # # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
+    print(f"This was the Breadth First algorithm on {game_name[:-4]}.\n")
+    print(end - start)
+    # output_to_csv.output(rushhour.grid.size, breadth_first_solution.path, game_name, algorithm='Breadthfirst')
 
 
     # ------------------------------------- Run the depth first algorithm ------------------------------------
