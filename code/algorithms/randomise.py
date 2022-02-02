@@ -1,11 +1,13 @@
 from copy import deepcopy
 import random
+from code.classes.grid import Grid
+from code.classes.rushhour import RushHour
 from code.classes.solution import Solution 
 import random
 from code.classes.solution import Solution 
 import math
 
-def random_algo(rushhour):
+def random_algo(rushhour: RushHour) -> Solution:
     """
     Contains the process of randomly moving around vehicles in the grid untill a solution state is found.
     Still only for 6x6 puzzles.
@@ -41,7 +43,7 @@ def random_algo(rushhour):
 
     return random_solution
 
-def random_winning_state(grid, rushhour):
+def random_winning_state(grid: Grid, rushhour: RushHour) -> list[list[str]]:
     """
     Returns a winning state after executing random moves, untill one is found.
     """
