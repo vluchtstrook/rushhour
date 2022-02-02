@@ -31,7 +31,11 @@ python3 main.py Rushhour6x6_2.csv
 ```
 Wanneer je de naam van het csv bestand weglaat zal het programma automatisch de eerste puzzel pakken. 
 
-In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een csv file gegenereerd waarbij de verplaatsing van de voertuigen staan weergegeven.  
+## Output
+In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een tijd weergegeven hoelang het algoritme erover heeft gedaan om tot deze oplossing te komen.
+
+Daarnaast is het ook nog mogelijk om een visualisatie te maken van het bord waarbij de verplaatsingen te zien zijn om de rode auto naar de uitganspositie te brengen. Hiervoor moet je de regel die begint met _gamepygui.visualize_ uit de comments halen. 
+Als laatste kun je de verplaatsing van de voertuigen in een csv bestand resulteren, hiervoor moet je de regel die begint met _output_to_csv.output_ uit de comments halen. 
 
 ## De algoritmes
 "Naam_van_het_algoritme" - "locatie_in_de_repository"
