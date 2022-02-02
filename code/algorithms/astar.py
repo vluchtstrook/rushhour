@@ -23,7 +23,9 @@ from code.classes.solution import Solution
 
 class Astar():
     """
-    This algorithm builds a queue of possible states of the game. Only unique states are in the queue.
+    This algorithm builds a priority queue of possible states of the game. Priority is given based on the depth 
+    and the admissable heuristic. Only unique states are in the queue. The algorithm stops when a winning state is 
+    found, or when the queue is empty.
     """
     def __init__(self, rushhour: RushHour) -> None:
 
@@ -90,9 +92,11 @@ class Astar():
                         
                         self.solution.count_unique_states += 1
 
-                        heapq.heappush(self.heap, (self.H1_costs(child_grid) + parent_depth + 1, 
-                                                    parent_depth + 1,
-                                                    self.rushhour.grid_to_string(child_grid)))
+                        heapq.heappush(self.heap, (
+                            self.H1_costs(child_grid) + parent_depth + 1, 
+                            parent_depth + 1,
+                            self.rushhour.grid_to_string(child_grid))
+                            )
 
                         # Store the parent child connection.
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
@@ -105,13 +109,13 @@ class Astar():
         """
         This method returns the path that led to the solution.
         """
-        # Beginning with inserting the winning state found
+        # Inserting the winning state.
         path = [self.rushhour.grid_to_string(child_grid)]
 
-        # Turn parent grid into a string 
+        # Turn parent grid into a string.
         parent_grid = self.rushhour.grid_to_string(parent_grid)
 
-        # Find all child - parent relations and add each parent to the path
+        # Find all child - parent relations and add each parent to the path.
         while parent_grid != '':
             path.insert(0, parent_grid)
             parent_grid = path_memory[parent_grid]

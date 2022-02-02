@@ -5,7 +5,6 @@ import pandas as pd
 
 """
 Experiment_2: 
-
 Generate a thousand Best First solutions to the 9x9_4 puzzle.
 
 Compare the avarage of these thousand solutions to the solutions found in Experiment_1.
