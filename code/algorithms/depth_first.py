@@ -5,7 +5,7 @@ Course: programmeertheorie
 Team: vluchtstrook
 
 This file contains the depth first algorithm. It runs on the Rushhour class and inherits from the Breadth First Class 
-(code/algorithms/breadth_first.py). This class contains a method that gets the last state of the queue.
+(breadth_first.py). This class contains a method that gets the last state of the queue.
 This algorithm is called from the main file (main.py).
 """
 
