@@ -6,7 +6,7 @@ Team: vluchtstrook
 
 This file contains a class named Grid. It defines two methods that (1) calculates the 'exit' of the grid and checks if 
 the red car (or car 'X') of the grid is in the exit spot and (2) checks if a specific move is legal.
-An instance of the Rushhour class is created in the loader file (loader.py).
+An instance of the Grid class is created in the loader file (loader.py).
 """
 
 
@@ -30,7 +30,7 @@ class Grid:
             return True
         return False
     
-    
+
     def move_in_grid(self, vehicle_name, direction, vehicle_size):
         """
         This method checks if a specific move is possible inside the grid. It changes the position of the vehicle
