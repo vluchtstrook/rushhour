@@ -72,22 +72,22 @@ if __name__ == "__main__":
 
 
  # ------------------------------------- Run the A Star algorithm ------------------------------------
-    # start = time.time()
-    # Astar_class = Astar(rushhour)
-    # Astar_solution = Astar_class.run()
-    # end = time.time()
-    # visualisation.visualisation(Astar_solution, rushhour.grid.size)
-    # # pygamegui.visualize(Astar_solution, rushhour.grid.size)
-    # print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
+    start = time.time()
+    Astar_class = Astar(rushhour)
+    Astar_solution = Astar_class.run()
+    end = time.time()
+    visualisation.visualisation(Astar_solution, rushhour.grid.size)
+    # pygamegui.visualize(Astar_solution, rushhour.grid.size)
+    print(f"This was the A Star algorithm {game_name[:-4]}.\n")   
     # # output_to_csv.output(rushhour.grid.size, Astar_solution.path, game_name, algorithm='Astar')
 
 
 # ------------------------------------- Run the Best First algorithm ------------------------------------
-    start = time.time()
-    best_first_class = BestFirst(rushhour)
-    best_first_solution = best_first_class.run()
-    end = time.time()
-    visualisation.visualisation(best_first_solution, rushhour.grid.size)
-    print(f"This was the Best First algorithm {game_name[:-4]}.\n")
-    print(end - start)   
-    # output_to_csv.output(rushhour.grid.size, best_first_solution.path, game_name, algorithm='Random_Astar')
+    # start = time.time()
+    # best_first_class = BestFirst(rushhour)
+    # best_first_solution = best_first_class.run()
+    # end = time.time()
+    # visualisation.visualisation(best_first_solution, rushhour.grid.size)
+    # print(f"This was the Best First algorithm {game_name[:-4]}.\n")
+    # print(end - start)   
+    # # output_to_csv.output(rushhour.grid.size, best_first_solution.path, game_name, algorithm='Random_Astar')
