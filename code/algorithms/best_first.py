@@ -7,7 +7,8 @@ Team: vluchtstrook
 This file contains the best first algorithm. It runs on the Rushhour class and contains five methods that (1) retrieves the 
 next state from the list of states, (2) runs the algorithm as long as the priority queue contains states, (3) returns the path with
 the states leading to the solution, (4) counts the vehicles that block the red vehicle (vehicle 'X') from the exit, (5, 6, 7) calculates 
-the costs of a child grid, (8) returns the preferred position of each vehicle on the grid and (9)...
+the costs of a child grid, (8) returns the preferred position of each vehicle on the grid and (9) returns the most common
+winning grid.
 This algorithm is called from the main file (main.py).
 """
 
@@ -235,4 +236,7 @@ class BestFirst():
 
 
     def most_common(self, lst: list[str]) -> int:
+        """
+        This function returns the most common winning grid.
+        """
         return max(set(lst), key=lst.count)
