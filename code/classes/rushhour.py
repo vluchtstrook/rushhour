@@ -83,3 +83,4 @@ class RushHour:
                 list_grid[i][j] = string_grid[j + (i * self.grid.size)]
         
         return list_grid 
+        
