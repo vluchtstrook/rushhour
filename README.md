@@ -22,7 +22,7 @@ Dit programma is geschreven in Python en bevat een aantal packages die allereers
 pip3 install -r requirements.txt
 ```
 
-Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. Welk algoritme je kunt runnen staan onder het kopje 'De algoritmes' uitgelegd.  
+Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. 
 
 Voor het runnen van een specifieke puzzel moet je in de terminal aangeven de naam van de puzzel die je wilt runnen, dit doe je als volgt:
 
@@ -31,14 +31,9 @@ python3 main.py Rushhour6x6_2.csv
 ```
 Wanneer je de naam van het csv bestand weglaat zal het programma automatisch de eerste puzzel pakken. 
 
-## Output
-In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een tijd weergegeven hoelang het algoritme erover heeft gedaan om tot deze oplossing te komen.
-
-Daarnaast is het ook nog mogelijk om een visualisatie te maken van het bord waarbij de verplaatsingen te zien zijn om de rode auto naar de uitganspositie te brengen. Hiervoor moet je de regel die begint met _gamepygui.visualize_ uit de comments halen. 
-Als laatste kun je de verplaatsing van de voertuigen in een csv bestand resulteren, hiervoor moet je de regel die begint met _output_to_csv.output_ uit de comments halen. 
+In de terminal zie je welk algoritme er is gebruikt, wat de lengte van het pad is om naar de oplossing te komen, vervolgens zie je hoeveel states er hierbij zijn afgegaan en hoeveel daarvan uniek zijn. Daarnaast wordt er een csv file gegenereerd waarbij de verplaatsing van de voertuigen ten opzichte van het beginbord staan weergegeven.  
 
 ## De algoritmes
-"Naam_van_het_algoritme" - "locatie_in_de_repository"
 
 ### Het random algoritme - code/algorithms/randomise.py
 Als eerste hebben we een random algoritme geimplementeerd die fungeert als baseline voor de oplossing. 
