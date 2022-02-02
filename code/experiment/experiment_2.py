@@ -29,6 +29,7 @@ while i < 1000:
     best_first_class = BestFirst(rushhour)
     best_first_solution = best_first_class.run()
     i += 1
+    print(i)
 
     # Store all path length of the solutions
     best_first_solutions.append(len(best_first_solution.path))
@@ -42,4 +43,4 @@ percentage = (amount_of_shorter_solutions / df['path'].count()) * 100
 
 
 print(f'Out of the first {length} best solutions')
-print(f'The average solution path of best first belongs to the {percentage}\% best answers.')
+print(f'The average solution path of best first belongs to the {percentage}% best answers.')
