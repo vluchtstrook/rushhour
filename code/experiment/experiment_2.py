@@ -28,6 +28,7 @@ i = 0
 while i < 1000:
     best_first_class = BestFirst(rushhour)
     best_first_solution = best_first_class.run()
+    i += 1
 
     # Store all path length of the solutions
     best_first_solutions.append(len(best_first_solution.path))
