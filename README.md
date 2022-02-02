@@ -69,10 +69,11 @@ Voor die berekening wordt er een X aatal keer het random algoritme gedraaid met 
 Deze is erg snel, maar geeft geen garantie op het vinden van het beste antwoord, doordat het geen rekening houdt met de lengte van het pad en dus een overschatting kan maken. 
 
 ## Het experiment
-Om het experiment uit te kunnen voeren moet in de terminal de volgende command line ingevoerd worden. 
+Om de experimenten uit te kunnen voeren moet in de terminal als command line de naam van het bestand van het experiment ingevuld worden. Zoals voor experiment 1 bijvoorbeeld: 
 ```
 python3 experiment_1.py
 ```
-Daarnaast kan je in het bestand **experiment_1.py** de regels 27 t/m 36 uit de comments halen om een csv bestand te genereren waarbij je een lijst te zien krijgt met daarin de path lengte van een aantal winnende oplossingen. Dit aantal is standaard ingesteld op 400000. 
+Bij experiment 1, door **experiment_1.py** als command line te gebruiken, wordt een csv bestand gegenereerd waarbij je een lijst te zien krijgt met daarin de path lengte van een aantal winnende oplossingen (de beste) volgens Het Breadth first algoritme. Dit aantal is in het bestand ingesteld op 400000. Verder krijg je als output in de terminal te zien wat de eerste (in dit geval) 400000 beste oplossingen zijn voor de ingestelde puzzel met het breadth first algoritme. 
 
-Als de code volledig is gedraaid wordt er een output in de terminal gegeven. Hier wordt vermeld voor hoeveel winnende staten er de beste oplossing is gevonden en hoeveel het gemiddeld voorkomende winnende pad met het best first algoritme in percentage is ten opzichte van de beste antwoorden. 
+Bij experiment 2, door **experiment_2.py** als command line te gebruiken, wordt er een gemiddeld pad berekend uit 1000 oplossingen met het Best first algoritme voor de ingestelde puzzel en vervolgens wordt er berekend welk percentage dit gemiddelde zich verhoudt ten opzichte van de beste oplossingen uit experiment 1. 
+Als output in de terminal zie je het percentage en het aantal beste oplossingen.
