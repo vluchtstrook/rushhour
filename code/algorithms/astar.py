@@ -65,7 +65,7 @@ class Astar():
             parent_depth = parent[1]
             parent_grid = parent[2]
 
-            # Check whether this is a unique parent.
+            # Check whether state is a unique parent.
             if parent_grid not in self.archive:
 
                 # Turn the parent state from string-type into 2x2 list-type.
@@ -101,7 +101,7 @@ class Astar():
                         # Store the parent child connection.
                         self.path_memory[self.rushhour.grid_to_string(child_grid)] = self.rushhour.grid_to_string(parent_grid)
 
-                # Add the parent to the archive to avoid repetitive investigation.
+                # Add parent to archive.
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
 
 

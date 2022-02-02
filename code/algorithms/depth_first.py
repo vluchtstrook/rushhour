@@ -1,17 +1,25 @@
+"""
+depth_first.py
+
+Course: programmeertheorie
+Team: vluchtstrook
+
+This file contains the depth first algorithm. It runs on the Rushhour class and inherits from the Breadth First Class 
+(code/algorithms/breadth_first.py). This class contains a method that gets the last state of the queue.
+This algorithm is called from the main file (main.py).
+"""
+
+
 from code.algorithms.breadth_first import BreadthFirst 
 
 
 class DepthFirst(BreadthFirst):
     """
-    A Depth First algorithm.
-
-    Almost all of the functions are equal to those of the BreadthFirst class, which is why
-    we inherit that class.
+    This algorithm creates a stack of possible states of the game. Only unique states are in the stack.
     """
 
     def get_next_state(self) -> str:
         """
-        Method that gets the next state from the list of states.
-        For Depth First we need the last one added to the list; we use a stack.
+        This method gets the last added state from the stack.
         """
         return self.queue.pop()
