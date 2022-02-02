@@ -31,4 +31,3 @@ class Vehicle():
         This method returns the length of the vehicle. This can be either 2 (car) or 3 (truck).
         """
         return self.length
-
