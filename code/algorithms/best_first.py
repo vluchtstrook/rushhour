@@ -28,7 +28,9 @@ class BestFirst():
         self.size = rushhour.grid.size
         self.vehicles = rushhour.vehicles
         self.vehicles_names = rushhour.vehicle_names
-        self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour)
+
+        self.repetition = 10
+        self.average_win_grid = self.prefered_position(self.initial_grid, self.rushhour, self.repetition)
 
         # Create the priority queue
         self.heap = []
@@ -37,8 +39,6 @@ class BestFirst():
 
         # Algorithm specific variables
         self.archive = set()
-
-        # path_memory = {'string_child' : 'string_parent'}
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
                 
@@ -133,7 +133,7 @@ class BestFirst():
         # Extract the row of the red car from grid
         finish_row = child_grid.grid[finish_row_index - 1]
 
-        # Determine the coordinates of the red car in the grid
+        # Determine the coordinates of the red car
         X_index = 0
         for i in range(len(finish_row)):
             if finish_row[i] == 'X':
@@ -180,30 +180,6 @@ class BestFirst():
             
         return score
 
-    def H3_costs(self, child_grid):
-        """
-        Calculates the lower bound blocking which is H1 plus the minimum number of vehicles that block these vehicles in H2.
-        """
-        obstacles = self.vehicles_in_the_way(child_grid)
-        finish_row_index = child_grid.size // 2 if child_grid.size % 2 == 0 else math.ceil(child_grid.size / 2)
-
-        first_obstacle = ''
-        index_first_obstacle = 0
-
-        for i in range(child_grid.size - obstacles[1] + 2):
-            if child_grid.grid[finish_row_index - 1][i + obstacles[1]] != '_':
-                first_obstacle = child_grid.grid[finish_row_index - 1][i + obstacles[1]]
-                index_first_obstacle = i
-                break
-
-        score = 0
-
-        if first_obstacle != '':
-            for i in range(child_grid.size):
-                if child_grid.grid[i][index_first_obstacle] != first_obstacle and child_grid.grid[i][index_first_obstacle] != '_':
-                            score += 1
-        return score  
-
 
     def H4_costs(self, grid, average_win_grid):
         """
@@ -215,7 +191,8 @@ class BestFirst():
                 if grid.grid[i][j] != average_win_grid[i][j]:
                     score += 1
         return score
-    
+
+
     def H5_costs(self, grid, average_win_grid):
         """
         Calculate the minimum amount of steps each car has to move to reach an end position
@@ -238,12 +215,13 @@ class BestFirst():
                 score += abs(win_grid_coordinates[vehicle][1] - grid_coordinates[vehicle][1])
 
         return score
+       
         
-    def prefered_position(self, grid, rushhour):
+    def prefered_position(self, grid, rushhour, repetition):
         random_winning_states = []
         i = 0
 
-        while i < 10:
+        while i < repetition:
             random_win = random_winning_state(grid, rushhour)
             random_winning_states.append(random_win)
             i += 1
