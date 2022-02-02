@@ -12,7 +12,7 @@ An instance of the Vehicle class is created in the loader file (loader.py).
 
 class Vehicle:
     
-    def __init__(self, car, orientation, length):
+    def __init__(self, car: str, orientation: str, length: int) -> None:
         self.car = car
         self.orientation = orientation
         self.length = length

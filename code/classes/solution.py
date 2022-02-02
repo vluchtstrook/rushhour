@@ -13,7 +13,7 @@ An instance of the Solution class is created in the algorithm files (code/algori
 
 class Solution:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.path = []
         self.count_states = 0
         self.count_unique_states = 0

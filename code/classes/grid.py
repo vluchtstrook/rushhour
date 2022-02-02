@@ -15,7 +15,7 @@ import math
 
 class Grid:
     
-    def __init__(self, size, new_grid):
+    def __init__(self, size: int, new_grid: list[list[str]]) -> None:
         self.size = size
         self.grid = new_grid
 

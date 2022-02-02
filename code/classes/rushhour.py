@@ -16,7 +16,7 @@ import code.loader.loader as loader
 
 class RushHour:
     
-    def __init__(self, filename):
+    def __init__(self, filename: str) -> None:
         
         # Store dictionary with all vehicle instances and a list of vehicle names.
         self.vehicles, self.vehicle_names = loader.load_vehicles(filename)
