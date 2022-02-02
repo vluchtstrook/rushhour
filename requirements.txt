@@ -4,7 +4,7 @@ import numpy
 import matplotlib
 import colour
 
-To install these Python packages you need to type in your terminal the following sentence (for example the pandas package):
+To install one of these Python packages you need to type in your terminal the following sentence (for example the pandas package):
 
 pip3 install pandas
 
