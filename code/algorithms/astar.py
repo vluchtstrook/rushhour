@@ -1,7 +1,11 @@
 import copy
 import math
 import heapq
+import string
+from tokenize import String
+from typing import Dict
 from code.classes.grid import Grid
+from code.classes.rushhour import RushHour
 from code.classes.solution import Solution
 
 
@@ -11,7 +15,7 @@ class Astar():
     Only unique states are in the queue (no repetitions of states)
     """
 
-    def __init__(self, rushhour) -> None:
+    def __init__(self, rushhour: RushHour) -> None:
 
         # Info from rushhour
         self.rushhour = rushhour
@@ -29,13 +33,13 @@ class Astar():
         self.path_memory = {self.rushhour.grid_to_string(self.initial_grid): ''}
         self.solution = Solution()
                 
-    def get_next_state(self):
+    def get_next_state(self) -> set[int, int, str]:
         """
         Method that gets the next state from the list of states.
         """
         return heapq.heappop(self.heap)
 
-    def run(self):
+    def run(self) -> Solution:
         """
         Runs the algorithm untill all possible states are visited.
         """
@@ -85,7 +89,7 @@ class Astar():
                 self.archive.add(self.rushhour.grid_to_string(parent_grid))
 
 
-    def get_path(self, child_grid, parent_grid, path_memory):
+    def get_path(self, child_grid: Grid, parent_grid: Grid, path_memory: Dict[str, str]) -> list[str]:
         """
         Returns the path that led to the solution state.
         """
@@ -103,7 +107,7 @@ class Astar():
         return path
 
 
-    def H1_costs(self, child_grid):
+    def H1_costs(self, child_grid: Grid) -> int:
         """
         Returns the total costs which is the manhattan distance + amount of cars in the way to the exit.
         """
@@ -112,7 +116,7 @@ class Astar():
         return len(obstacles[0]) + child_grid.size - obstacles[1] + 2
 
 
-    def vehicles_in_the_way(self, child_grid):
+    def vehicles_in_the_way(self, child_grid: Grid) -> set[set[str], int]:
         """
         Counts the amount of cars that are between the red car and the exit of the bord.
         """
