@@ -9,7 +9,7 @@ class DepthFirst(BreadthFirst):
     we inherit that class.
     """
 
-    def get_next_state(self):
+    def get_next_state(self) -> str:
         """
         Method that gets the next state from the list of states.
         For Depth First we need the last one added to the list; we use a stack.
