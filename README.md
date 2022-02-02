@@ -55,7 +55,7 @@ Dit herhaalt zich net zo lang er een state komt waarbij de rode auto op de eindp
 Dan wordt het pad herleidt door te kijken van welke parent state de 'winning' child state afkomstig is.
 Dit wordt net zo lang gedaan totdat er geen parent state meer van een child state te vinden is en dit geeft aan dat die state de beginsituatie is. 
 
-### Het depth first algoritme - code/algorithms/depth_frist.py
+### Het depth first algoritme - code/algorithms/depth_first.py
 Ook hebben we het depth first algoritme gebruikt. Deze verschilt qua code niet zo veel met de breadth first algoritme, maar geeft wel een hele andere uitkomst wat interessant kan zijn. Het depth first algoritme wordt ook gestructureerd aan de hand van vertakkingen, maar hierbij wordt er eerst naar de uiterste vertakking gekeken en als daar een oplossing uitkomt is dat ook gelijk de oplossing die depth first geeft.
 Dit algoritme zal dus met de begin state beginnen en vanaf hier steeds 1 nieuwe state aanmaken en doorgaan op gelijk deze state tot de winning state is bereikt.
 
