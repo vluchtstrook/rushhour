@@ -19,7 +19,7 @@ Welk algoritme hiervoor het beste is hangt af van verschillende aspecten en zull
 Dit programma is geschreven in Python en bevat een aantal packages die allereerst geinstalleerd moeten worden op de computer om de code te kunnen runnen. Welke packages er nodig zijn staan beschreven in **requirements.txt** en zijn als volgt te installeren:
 
 ```
-pip3 install name_of_package
+pip3 install -r requirements.txt
 ```
 
 Het programma wordt vanuit de **main.py** gedraaid. Vanuit hier wordt het csv bestand ingeladen en worden de gegevens in de juiste vormen opgeslagen. Daarnaast worden hier de algoritmes aangestuurd wanneer deze uit de comments zijn gehaald. Voor de werking van de algoritmes hoeft alleen het algoritme uit de comments gehaald te worden in de main.py en de rest regelt het programma zelf. 
