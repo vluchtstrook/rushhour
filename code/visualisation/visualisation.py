@@ -13,4 +13,4 @@ def visualisation(solution, grid_size):
     #     print()
 
     print(f'The solutions path length is {len(solution.path)}.')
-    print(f'It took creating {solution.count_states} states, of which {solution.count_unique_states} unique.', end='\n\n')
+    print(f'{solution.count_states} states were created, of which {solution.count_unique_states} unique.', end='\n\n')
